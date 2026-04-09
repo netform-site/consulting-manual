@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기술컨설팅 인수인계 회의자료</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1565c0;
+    --primary-dark: #0d47a1;
+    --primary-light: #e3f2fd;
+    --accent: #ff6f00;
+    --accent-light: #fff8e1;
+    --success: #2e7d32;
+    --success-light: #e8f5e9;
+    --warning: #ef6c00;
+    --warning-light: #fff3e0;
+    --danger: #c62828;
+    --danger-light: #ffebee;
+    --purple: #6a1b9a;
+    --purple-light: #f3e5f5;
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #eeeeee;
+    --gray-300: #e0e0e0;
+    --gray-500: #9e9e9e;
+    --gray-600: #757575;
+    --gray-700: #616161;
+    --gray-800: #424242;
+    --gray-900: #212121;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10.5pt; color: var(--gray-800); line-height: 1.7;
+    background: #f0f2f5;
+  }
+  @media print {
+    body { background: white; }
+    .wrap { box-shadow: none; margin: 0; }
+    .page-break { page-break-before: always; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .no-print { display: none !important; }
+  }
+
+  .wrap {
+    max-width: 210mm; margin: 20px auto; background: white;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1); border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* ===== 표지 ===== */
+  .cover {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    color: white; padding: 50px 40px; text-align: center;
+    position: relative;
+  }
+  .cover::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 6px; background: linear-gradient(90deg, #ff6f00, #ffa726, #ff6f00);
+  }
+  .cover-label {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 20px; border-radius: 20px;
+    font-size: 9pt; letter-spacing: 3px; margin-bottom: 20px;
+  }
+  .cover h1 { font-size: 26pt; font-weight: 800; margin-bottom: 8px; }
+  .cover .sub { font-size: 13pt; font-weight: 300; opacity: 0.9; margin-bottom: 24px; }
+  .cover-meta {
+    display: inline-flex; gap: 30px; font-size: 9.5pt; opacity: 0.8;
+  }
+
+  /* ===== 본문 ===== */
+  .content { padding: 30px 36px; }
+
+  /* ===== 슬라이드 헤더 ===== */
+  .slide-title {
+    font-size: 16pt; font-weight: 800; color: var(--primary-dark);
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 8px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .slide-title .badge {
+    background: var(--primary); color: white;
+    font-size: 9pt; padding: 2px 12px; border-radius: 12px;
+    font-weight: 600;
+  }
+
+  /* ===== 핵심 요약 박스 ===== */
+  .summary-box {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-radius: 10px; padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .summary-box h3 {
+    font-size: 12pt; color: var(--primary-dark); margin-bottom: 10px;
+  }
+  .summary-box p { font-size: 10pt; color: var(--gray-700); }
+
+  /* ===== 카드 그리드 ===== */
+  .card-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .g-card {
+    border: 1px solid var(--gray-200); border-radius: 8px;
+    overflow: hidden;
+  }
+  .g-card-head {
+    padding: 7px 12px; font-weight: 700; font-size: 9.5pt;
+    color: white; display: flex; align-items: center; gap: 6px;
+  }
+  .g-card-body { padding: 10px 14px; font-size: 9.5pt; }
+  .g-card-body ul { list-style: none; }
+  .g-card-body ul li { padding: 3px 0; }
+  .g-card-body ul li::before { content: '- '; color: var(--gray-500); }
+
+  .bg-blue .g-card-head { background: var(--primary); }
+  .bg-orange .g-card-head { background: var(--accent); }
+  .bg-green .g-card-head { background: var(--success); }
+  .bg-red .g-card-head { background: var(--danger); }
+  .bg-purple .g-card-head { background: var(--purple); }
+  .bg-warning .g-card-head { background: var(--warning); }
+
+  /* ===== 플로우 ===== */
+  .flow {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 0; margin: 14px 0;
+  }
+  .flow-box {
+    background: white; border: 2px solid var(--primary);
+    border-radius: 8px; padding: 6px 12px;
+    text-align: center; font-size: 8.5pt; font-weight: 600;
+    color: var(--primary-dark); min-width: 70px; line-height: 1.3;
+  }
+  .flow-box small { display: block; font-weight: 400; font-size: 7.5pt; color: var(--gray-600); }
+  .flow-box.active { background: var(--primary); color: white; }
+  .flow-box.active small { color: rgba(255,255,255,0.8); }
+  .flow-arr { font-size: 14pt; color: var(--primary); margin: 0 3px; font-weight: 700; }
+
+  /* ===== 인포 테이블 ===== */
+  .i-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 9.5pt; margin: 10px 0;
+  }
+  .i-table th, .i-table td {
+    border: 1px solid var(--gray-300);
+    padding: 7px 10px; text-align: left;
+  }
+  .i-table th {
+    background: var(--gray-100); font-weight: 600;
+    white-space: nowrap;
+  }
+  .i-table thead th {
+    background: var(--primary); color: white;
+    font-weight: 600; text-align: center;
+  }
+
+  /* ===== 알림 ===== */
+  .note {
+    padding: 12px 16px; border-radius: 6px;
+    margin: 10px 0; font-size: 9.5pt;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .note-info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+  .note-warn { background: var(--warning-light); border-left: 4px solid var(--warning); }
+  .note-danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+  .note-success { background: var(--success-light); border-left: 4px solid var(--success); }
+  .note-purple { background: var(--purple-light); border-left: 4px solid var(--purple); }
+  .note b { display: block; margin-bottom: 2px; }
+
+  /* ===== 태그 ===== */
+  .tag {
+    display: inline-block; font-size: 8pt; font-weight: 600;
+    padding: 1px 8px; border-radius: 10px; margin-left: 2px;
+  }
+  .tag-blue { background: var(--primary-light); color: var(--primary-dark); }
+  .tag-orange { background: #fff3e0; color: #e65100; }
+  .tag-green { background: #e8f5e9; color: #2e7d32; }
+  .tag-red { background: #ffebee; color: #c62828; }
+  .tag-purple { background: #f3e5f5; color: #6a1b9a; }
+
+  /* ===== 번호 스텝 ===== */
+  .steps { counter-reset: step; list-style: none; }
+  .steps > li {
+    padding: 10px 0 10px 40px; position: relative;
+    border-bottom: 1px dotted var(--gray-200);
+  }
+  .steps > li:last-child { border-bottom: none; }
+  .steps > li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute; left: 0; top: 10px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--primary); color: white;
+    font-weight: 700; font-size: 10pt;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .steps > li h4 { font-size: 10.5pt; color: var(--gray-900); margin-bottom: 3px; }
+  .steps > li p { font-size: 9.5pt; color: var(--gray-700); }
+  .steps .sub-note {
+    background: var(--gray-50); border-left: 3px solid var(--gray-300);
+    padding: 6px 10px; margin-top: 6px; font-size: 9pt; color: var(--gray-600);
+  }
+
+  /* ===== 금액 박스 ===== */
+  .money-box {
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: 8px; padding: 14px 18px; margin: 10px 0;
+  }
+  .money-box h4 { font-size: 10pt; color: var(--primary-dark); margin-bottom: 6px; }
+  .money-row {
+    display: flex; justify-content: space-between;
+    padding: 3px 0; font-size: 9.5pt;
+  }
+  .money-row.total {
+    font-weight: 700; color: var(--danger);
+    border-top: 2px solid var(--primary); padding-top: 6px; margin-top: 4px;
+  }
+
+  /* ===== 구분 ===== */
+  .divider { border: none; border-top: 2px dashed var(--gray-300); margin: 24px 0; }
+
+  /* ===== 강조 ===== */
+  .hl { background: #fff176; padding: 0 4px; border-radius: 2px; }
+  .hl-red { background: #ffcdd2; padding: 0 4px; border-radius: 2px; }
+  .hl-blue { background: #bbdefb; padding: 0 4px; border-radius: 2px; }
+
+  /* ===== 인쇄 버튼 ===== */
+  .print-btn {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--primary); color: white; border: none;
+    padding: 12px 24px; border-radius: 30px; font-size: 10pt;
+    font-weight: 600; cursor: pointer; z-index: 100;
+    box-shadow: 0 4px 12px rgba(21,101,192,0.4);
+  }
+  .print-btn:hover { background: var(--primary-dark); }
+
+  /* 두줄 레이아웃 */
+  .two-col { display: flex; gap: 14px; }
+  .two-col > div { flex: 1; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ========== 표지 ========== -->
+  <div class="cover">
+    <div class="cover-label">HANDOVER MEETING</div>
+    <h1>기술컨설팅 업무 인수인계</h1>
+    <div class="sub">기술 자문 컨설팅 계약 전체 프로세스 상세 설명</div>
+    <div class="cover-meta">
+      <span>㈜넷폼알앤디</span>
+      <span>2026년 3월</span>
+      <span>2026 컨설팅 로드맵 기반</span>
+    </div>
+  </div>
+
+  <!-- ========== 1. 우리 회사가 하는 일 ========== -->
+  <div class="content">
+    <div class="slide-title">
+      <span class="badge">개요</span>
+      우리가 하는 일 — 기술컨설팅이란?
+    </div>
+
+    <div class="summary-box">
+      <h3>한 줄 요약</h3>
+      <p>
+        아파트 보수공사(재도장, 방수, 시트 등)에서 <strong>시공업체('갑')에게 기술지도, 인력알선, 품질관리 등의 용역을 제공</strong>하고
+        <strong>컨설팅비</strong>를 받는 사업입니다. 우리가 '을'(넷폼알앤디)입니다.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card bg-blue">
+        <div class="g-card-head">우리('을')가 하는 것</div>
+        <div class="g-card-body">
+          <ul>
+            <li>기술 시공가능자 물색, 알선, 교육</li>
+            <li>시공품질관리 감독지원 및 기술지도</li>
+            <li>공정관리 (안전관리 제외!)</li>
+            <li>자재 적치관리</li>
+            <li>설계변경 자문</li>
+            <li>시공품질 하자 보수비용 보증</li>
+          </ul>
+        </div>
+      </div>
+      <div class="g-card bg-orange">
+        <div class="g-card-head">업체('갑')가 하는 것</div>
+        <div class="g-card-body">
+          <ul>
+            <li>노무비, 공사경비 직접 부담</li>
+            <li><strong>안전관리 전적 책임 (핵심!)</strong></li>
+            <li>하자 원칙적 책임</li>
+            <li>개시신고, 착공계, 준공계 발송</li>
+            <li>현장팀 서류 작성 (일용근로계약서 등)</li>
+            <li>발주처(아파트)와 직접 계약 체결</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="note note-danger">
+      <span style="font-size:14pt;">&#x1F6A8;</span>
+      <div>
+        <b>반드시 기억할 것</b>
+        <span class="hl-red"><strong>안전관리 책임은 100% '갑'(업체)</strong></span>에게 있습니다.
+        우리는 기술자문 용역만 제공합니다. (계약서 제5조)
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ========== 2. 전체 프로세스 ========== -->
+    <div class="slide-title">
+      <span class="badge">전체 흐름</span>
+      처음부터 끝까지 — 9단계 프로세스
+    </div>
+
+    <p style="font-size:9.5pt; color:var(--gray-600); margin-bottom:10px;">
+      공사 하나가 시작부터 끝까지 아래 순서로 진행됩니다. 크게 <strong>계약 프로세스</strong>와 <strong>시공 프로세스</strong>로 나뉩니다.
+    </p>
+
+    <div style="text-align:center; font-weight:700; color:var(--primary-dark); font-size:10pt; margin-bottom:6px;">
+      계약 프로세스
+    </div>
+    <div class="flow">
+      <div class="flow-box">1. 영업/견적<small>주현진, 송보람</small></div>
+      <div class="flow-arr">&#x27A1;</div>
+      <div class="flow-box">2. 입찰/현설<small>송보람, 업체</small></div>
+      <div class="flow-arr">&#x27A1;</div>
+      <div class="flow-box">3. 투찰/견적확정<small>주현진, 송보람</small></div>
+      <div class="flow-arr">&#x27A1;</div>
+      <div class="flow-box">4. 낙찰/리스트<small>송보람, 공통</small></div>
+      <div class="flow-arr">&#x27A1;</div>
+      <div class="flow-box active">5. 계약체결<small>송보람, 김성민</small></div>
+    </div>
+
+    <div style="text-align:center; font-weight:700; color:var(--success); font-size:10pt; margin-bottom:6px; margin-top:14px;">
+      시공 프로세스
+    </div>
+    <div class="flow">
+      <div class="flow-box">6. 착공<small>김성민, 업체</small></div>
+      <div class="flow-arr">&#x27A1;</div>
+      <div class="flow-box">7. 시공/관리<small>김성민, 이지연</small></div>
+      <div class="flow-arr">&#x27A1;</div>
+      <div class="flow-box">8. 사진첩/마무리<small>김성민</small></div>
+      <div class="flow-arr">&#x27A1;</div>
+      <div class="flow-box active">9. 준공/정산<small>이지연, 주유진</small></div>
+    </div>
+  </div>
+
+  <!-- ========== 계약 프로세스 상세 ========== -->
+  <div class="content page-break">
+    <div class="slide-title">
+      <span class="badge">STEP 1~3</span>
+      영업 → 입찰 → 투찰 (일 시작하기)
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h4>견적서 작성 (1차) <span class="tag tag-blue">주현진</span><span class="tag tag-blue">송보람</span></h4>
+        <p>입찰 공고를 보고 1차 견적서를 작성합니다. 이 견적서가 이후 모든 금액의 기초가 됩니다.</p>
+      </li>
+      <li>
+        <h4>입찰 공고 확인 <span class="tag tag-blue">송보람</span></h4>
+        <p><strong>k-apt, 21라인</strong>에서 입찰 공고를 확인합니다.</p>
+        <div class="sub-note">
+          <strong>일반공고</strong> → 공고문을 잔디 <em>'입찰공고'</em> 토픽에 업로드<br>
+          <strong>시트공법</strong> → 별도 확인 요청 필요<br>
+          공고문 리스트도 잔디에 업로드
+        </div>
+      </li>
+      <li>
+        <h4>현장설명회 업체 배정 <span class="tag tag-orange">업체</span></h4>
+        <p>업체가 현장설명회에 참석합니다. 업체 요청 시 우리(넷폼)도 참석 가능.</p>
+      </li>
+      <li>
+        <h4>비교견적서 작성 <span class="tag tag-orange">업체</span> 또는 <span class="tag tag-blue">주현진&송보람</span></h4>
+        <p>1차 견적서를 토대로 <strong>비교견적서</strong>를 작성하여 분배합니다.</p>
+        <div class="sub-note">
+          <strong>&#x26A0; 업체가 안 할 경우</strong> → 주현진 &amp; 송보람이 직접 비교견적서 작성 후 분배
+        </div>
+      </li>
+      <li>
+        <h4>현설 이후 2차 견적서 작성 <span class="tag tag-blue">주현진</span><span class="tag tag-blue">송보람</span></h4>
+        <p>현장설명회에서 나온 내용(물량변경, 공법변경 등)을 반영하여 <strong>2차 견적서</strong>를 작성합니다.</p>
+      </li>
+      <li>
+        <h4>투찰 여부 파악 <span class="tag tag-orange">업체</span></h4>
+        <p>각 업체별로 투찰을 했는지 여부를 확인합니다.</p>
+      </li>
+    </ol>
+
+    <div class="note note-info">
+      <span style="font-size:14pt;">&#x1F4C1;</span>
+      <div>
+        <b>드라이브 업로드 규칙</b>
+        모든 문서는 <strong>004.서비스/브랜드 → 008.기술자문컨설팅 → 2026년 → [현장명]</strong> 폴더에 업로드합니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 4: 낙찰 확인 ========== -->
+  <div class="content page-break">
+    <div class="slide-title">
+      <span class="badge">STEP 4</span>
+      낙찰 확인 → 리스트 등록 (가장 할 일이 많은 단계)
+    </div>
+
+    <div class="note note-warn">
+      <span style="font-size:14pt;">&#x2B50;</span>
+      <div>
+        <b>이 단계가 실무의 핵심입니다</b>
+        낙찰이 확정되면 한꺼번에 여러 작업이 진행됩니다. 순서를 반드시 지켜주세요.
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h4>낙찰업체 확인 <span class="tag tag-green">공통</span></h4>
+        <p><strong>k-apt</strong>에서 낙찰업체를 확인합니다.</p>
+      </li>
+      <li>
+        <h4>컨설팅리스트 업로드 <span class="tag tag-blue">송보람(정)</span><span class="tag tag-blue">주현진(부)</span></h4>
+        <p>기술자문컨설팅 넷폼 잔디에 공유합니다.</p>
+      </li>
+      <li>
+        <h4>기술자문컨설팅 업로드 (넷폼 잔디) <span class="tag tag-blue">송보람</span></h4>
+        <p>아래 항목을 모두 기재하여 업로드합니다:</p>
+        <div class="two-col" style="margin-top:8px;">
+          <div>
+            <table class="i-table" style="font-size:9pt;">
+              <tr><th>아파트명</th><td></td></tr>
+              <tr><th>영업담당자명</th><td></td></tr>
+              <tr><th>업체명</th><td></td></tr>
+              <tr><th>업체담당자</th><td></td></tr>
+              <tr><th>LRC확인</th><td></td></tr>
+              <tr><th>낙찰금액</th><td></td></tr>
+              <tr><th>실행금액</th><td></td></tr>
+            </table>
+          </div>
+          <div>
+            <table class="i-table" style="font-size:9pt;">
+              <tr><th>시지원유무</th><td></td></tr>
+              <tr><th>사후정산유무</th><td></td></tr>
+              <tr><th>컨설팅종류</th><td></td></tr>
+              <tr><th>사진첩유무</th><td></td></tr>
+              <tr><th>현장소장</th><td></td></tr>
+              <tr><th>착공예정일</th><td></td></tr>
+              <tr><th>범위/현장사진</th><td></td></tr>
+            </table>
+          </div>
+        </div>
+      </li>
+      <li>
+        <h4>업체 계약서 초안 작성 &amp; 발송 <span class="tag tag-blue">송보람</span></h4>
+        <p><span class="hl">넷폼 양식대로</span> 계약서 초안을 작성하여 업체에 발송합니다.</p>
+      </li>
+      <li>
+        <h4>발주처와 계약 체결 <span class="tag tag-orange">업체</span></h4>
+        <p>업체가 발주처(아파트)와 직접 계약을 체결합니다. 업체 요청 시 넷폼도 참석 가능.</p>
+      </li>
+      <li>
+        <h4>계약서 전달 요청 <span class="tag tag-blue">송보람</span></h4>
+        <p>계약이 완료되면 <strong>계약서를 반드시 넷폼에 전달</strong>받도록 요청합니다.</p>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ========== STEP 5: 계약체결 ========== -->
+  <div class="content page-break">
+    <div class="slide-title">
+      <span class="badge">STEP 5</span>
+      컨설팅 계약 체결 (우리와 업체 간의 계약)
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h4>컨설팅 계약서 작성 <span class="tag tag-blue">송보람</span></h4>
+        <p>넷폼 표준 양식에 따라 <strong>기술 자문 컨설팅 계약서</strong>를 작성합니다.</p>
+        <div class="sub-note">
+          계약서 = 13개 조항 + 계약 기본정보 (계약명, 이행장소, 보증기간, 금액)<br>
+          <strong>지급방식:</strong> 잔금 100% (준공검사 후 일시 지급)
+        </div>
+      </li>
+      <li>
+        <h4>모두사인 계약 체결 <span class="tag tag-blue">송보람</span></h4>
+        <p><strong>모두사인</strong>(전자서명 플랫폼)을 통해 양측이 전자서명합니다.</p>
+      </li>
+      <li>
+        <h4>예정공정표 요청 <span class="tag tag-green">김성민</span></h4>
+        <p>담당 소장에게 현장 예정공정표를 요청합니다.</p>
+      </li>
+      <li>
+        <h4>업체 이메일 발송 <span class="tag tag-green">김성민</span></h4>
+        <p>업체에 아래 내용을 이메일로 발송합니다:</p>
+        <div class="sub-note">
+          1) 현장소장 인적사항<br>
+          2) 현장 예정공정표<br>
+          3) 현장 안내사항
+        </div>
+      </li>
+    </ol>
+
+    <hr class="divider">
+
+    <!-- ========== 계약서 금액 구조 ========== -->
+    <div class="slide-title">
+      <span class="badge">핵심</span>
+      돈의 흐름 — 금액 산정 구조
+    </div>
+
+    <p style="font-size:9.5pt; color:var(--gray-600); margin-bottom:12px;">
+      공사 유형에 따라 금액 산정 방식이 다릅니다. 아래 두 가지 타입을 이해하세요.
+    </p>
+
+    <div class="two-col">
+      <div>
+        <div class="money-box">
+          <h4>Type A: -10% 공사 (예시: 1.8억 낙찰)</h4>
+          <div class="money-row"><span>낙찰금액</span><span>180,000,000원</span></div>
+          <div class="money-row"><span>-10% (업체실행단가)</span><span>162,000,000원</span></div>
+          <div class="money-row"><span>현장소장 실행비</span><span>105,000,000원</span></div>
+          <div class="money-row total"><span>컨설팅비 (우리 수익)</span><span>57,000,000원</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="money-box">
+          <h4>Type B: -5% 공사 (예시: 1억 낙찰)</h4>
+          <div class="money-row"><span>낙찰금액</span><span>100,000,000원</span></div>
+          <div class="money-row"><span>영업이사정산비</span><span>35,000,000원</span></div>
+          <div class="money-row"><span>현장소장 실행비</span><span>50,000,000원</span></div>
+          <div class="money-row total"><span>컨설팅비 5% (우리 수익)</span><span>5,000,000원</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note note-purple">
+      <span style="font-size:14pt;">&#x1F4B0;</span>
+      <div>
+        <b>노임공문 (계약서와 함께 발송)</b>
+        업체에게 자재+노무비 금액을 안내하는 공문입니다.<br>
+        <strong>착수금 30%</strong> (자재반입+인력투입 시) →
+        <strong>중도금 40%</strong> (공정률 60%) →
+        <strong>준공잔금 30%</strong> (공사완료 후)
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 6~7: 착공/시공 ========== -->
+  <div class="content page-break">
+    <div class="slide-title">
+      <span class="badge">STEP 6~7</span>
+      착공 → 시공 / 진행관리
+    </div>
+
+    <div class="card-grid">
+      <div class="g-card bg-blue">
+        <div class="g-card-head">착공 단계 (STEP 6)</div>
+        <div class="g-card-body">
+          <p style="margin-bottom:6px;"><strong>1. 현장카톡 개설</strong> <span class="tag tag-green">김성민</span></p>
+          <ul>
+            <li>현장명, 위치, 착공일, 공사범위, 기간 공유</li>
+          </ul>
+          <p style="margin-top:8px;"><strong>2~3. 업체가 할 일</strong> <span class="tag tag-orange">업체</span></p>
+          <ul>
+            <li>개시신고</li>
+            <li>착공계 작성 및 발송</li>
+          </ul>
+          <p style="margin-top:8px;"><strong>4. 현장팀 작성서류</strong> <span class="tag tag-orange">업체</span></p>
+          <ul>
+            <li>일용근로계약서, 안전수칙서약서</li>
+            <li>작업일보, 안전일보</li>
+            <li>위험성 평가표</li>
+          </ul>
+        </div>
+      </div>
+      <div class="g-card bg-green">
+        <div class="g-card-head">시공/관리 단계 (STEP 7)</div>
+        <div class="g-card-body">
+          <p style="margin-bottom:6px;"><strong>1. 현장 방문</strong> <span class="tag tag-orange">업체</span></p>
+          <ul><li>업체 요청 시 넷폼도 참석</li></ul>
+          <p style="margin-top:8px;"><strong>2. 작업 전 준비</strong> (현장소장)</p>
+          <ul>
+            <li>서류작성, 안전장비 착용 사진촬영</li>
+          </ul>
+          <p style="margin-top:8px;"><strong>3. 중도금 신청</strong></p>
+          <ul>
+            <li>카톡방 알림 <span class="tag tag-green">김성민</span></li>
+            <li>전화 전달 <span class="tag tag-green">김성민</span></li>
+          </ul>
+          <p style="margin-top:8px;"><strong>4. 중간정산서</strong></p>
+          <ul>
+            <li>요청 및 확인 <span class="tag tag-purple">이지연</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="note note-danger">
+      <span style="font-size:14pt;">&#x1F534;</span>
+      <div>
+        <b>매일 체크 (김성민) — 절대 빠뜨리면 안 됩니다!</b>
+        1) 현장카톡방에서 <strong>작업일보, 안전일보, 작업사진</strong> 매일 업로드 확인<br>
+        2) <strong>안전장비 착용된 사진</strong> 반드시 확인<br>
+        <span style="font-size:8.5pt; color:var(--gray-600);">※ 시공팀에서 시공기술지도 요청 시 → 기술지도 진행</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 8~9: 마무리/준공 ========== -->
+  <div class="content page-break">
+    <div class="slide-title">
+      <span class="badge">STEP 8~9</span>
+      사진첩 → 준공 → 정산 (마무리)
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h4>사진첩 취합 <span class="tag tag-green">김성민</span></h4>
+        <p>사진을 정리하여 정리본을 <strong>업체에 이메일로 전달</strong>합니다.</p>
+        <div class="sub-note">이메일 발송 후 반드시 업체 담당자와 <strong>전화 통화</strong>로 수신 확인</div>
+      </li>
+      <li>
+        <h4>준공계 작성 및 발송 <span class="tag tag-orange">업체</span></h4>
+        <p>업체가 준공계를 작성하여 발송합니다.</p>
+      </li>
+      <li>
+        <h4>대금 관련 확인 <span class="tag tag-purple">이지연</span></h4>
+        <p>아래 3가지를 반드시 확인합니다:</p>
+        <div class="sub-note">
+          &#x2610; 준공계 발송 유무 확인<br>
+          &#x2610; 세금계산서 발행 유무 확인<br>
+          &#x2610; 대금 수금 확인
+        </div>
+      </li>
+      <li>
+        <h4>대금 입금 완료 시 <span class="tag tag-purple">이지연</span></h4>
+        <p>아래 순서대로 마무리합니다:</p>
+        <div class="sub-note">
+          ① 최종정산서 요청<br>
+          ② 업체 소통 및 정산 <span class="tag tag-green">공통</span> (정산서 마무리, 세금계산서 발행전달, 입금예정일 확인)<br>
+          ③ 컨설팅 세금계산서 발행 요청 (기술컨설팅 토픽방 공유)<br>
+          ④ 기술컨설팅현황 업로드 마무리
+        </div>
+      </li>
+      <li>
+        <h4>세금계산서 발행 및 입금확인 <span class="tag tag-red">주유진</span></h4>
+        <p>잔디 토픽 <strong>'기술자문컨설팅'</strong>에 세금계산서 및 입금완료 토픽 공지를 올립니다.</p>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ========== 변경 안내서 ========== -->
+  <div class="content page-break">
+    <div class="slide-title">
+      <span class="badge">서류</span>
+      금액이 바뀌면? — 변경 안내서 3가지 유형
+    </div>
+
+    <p style="font-size:9.5pt; color:var(--gray-600); margin-bottom:12px;">
+      계약 금액이 변동되면 아래 3가지 유형 중 해당되는 공문을 작성하여 업체에 발송합니다.
+    </p>
+
+    <div class="card-grid three">
+      <div class="g-card bg-blue">
+        <div class="g-card-head">유형 1: 선급금 청구 전</div>
+        <div class="g-card-body">
+          <p><strong>언제:</strong> 선급금 청구 전에 금액 변동 시</p>
+          <p style="margin-top:4px;"><strong>범위:</strong> 컨설팅 + 노무비 + 자재판매 전체</p>
+          <p style="margin-top:4px;"><strong>적용:</strong> 선급금 지급 요청서부터 적용</p>
+        </div>
+      </div>
+      <div class="g-card bg-orange">
+        <div class="g-card-head">유형 2: 컨설팅만 변경</div>
+        <div class="g-card-body">
+          <p><strong>언제:</strong> 컨설팅 금액만 변동 시</p>
+          <p style="margin-top:4px;"><strong>범위:</strong> 컨설팅 계약 총 금액</p>
+          <p style="margin-top:4px;"><strong>적용:</strong> 잔금 금액에서 변동</p>
+        </div>
+      </div>
+      <div class="g-card bg-green">
+        <div class="g-card-head">유형 3: 노무비+컨설팅 변경</div>
+        <div class="g-card-body">
+          <p><strong>언제:</strong> 노무비와 컨설팅비 모두 변동 시</p>
+          <p style="margin-top:4px;"><strong>범위:</strong> 컨설팅 + 노무비 + 자재판매 전체</p>
+          <p style="margin-top:4px;"><strong>적용:</strong> 잔금 금액에서 변동</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note note-info">
+      <span style="font-size:14pt;">&#x1F4DD;</span>
+      <div>
+        <b>변경공문 공통 기재사항</b>
+        수신(업체명), 제목, 계약일, 당초금액 / 변경 후 금액 (VAT 별도), 문서번호, 시행일자
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ========== 담당자 총괄표 ========== -->
+    <div class="slide-title">
+      <span class="badge">담당</span>
+      누가 뭘 하나? — 담당자별 업무
+    </div>
+
+    <table class="i-table">
+      <thead>
+        <tr>
+          <th style="width:80px;">담당자</th>
+          <th>주요 업무</th>
+          <th style="width:80px;">단계</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>송보람</strong></td>
+          <td>
+            견적서(1차), 입찰공고 확인, 컨설팅리스트(정), 넷폼잔디 업로드,
+            업체계약서 초안, 컨설팅 계약서 작성, 모두사인, 계약서 전달요청
+          </td>
+          <td>1~5</td>
+        </tr>
+        <tr>
+          <td><strong>주현진</strong></td>
+          <td>견적서(1차), 컨설팅리스트(부), 업체 미작성 시 견적서 대행</td>
+          <td>1~4</td>
+        </tr>
+        <tr>
+          <td><strong>김성민</strong></td>
+          <td>
+            예정공정표 요청, 업체 이메일 발송, 현장카톡 개설,
+            <span class="hl-red"><strong>매일 현장체크</strong></span>, 중도금 알림, 사진첩 취합
+          </td>
+          <td>5~8</td>
+        </tr>
+        <tr>
+          <td><strong>이지연</strong></td>
+          <td>
+            중간정산서 요청/확인, 준공계 확인, 세금계산서 확인,
+            대금 수금, 최종정산서, 업체 정산
+          </td>
+          <td>7~9</td>
+        </tr>
+        <tr>
+          <td><strong>주유진</strong></td>
+          <td>세금계산서 발행 및 입금확인, 잔디 토픽 공지</td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent);"><strong>업체</strong></td>
+          <td>
+            현장설명회, 비교견적서, 투찰, 발주처 계약,
+            개시신고, 착공계, 현장서류, 준공계
+          </td>
+          <td>전체</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== 자주 쓰는 도구/플랫폼 ========== -->
+  <div class="content page-break">
+    <div class="slide-title">
+      <span class="badge">도구</span>
+      알아야 할 도구/플랫폼/경로
+    </div>
+
+    <table class="i-table">
+      <thead>
+        <tr>
+          <th style="width:140px;">도구/플랫폼</th>
+          <th>용도</th>
+          <th style="width:120px;">사용 시점</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>k-apt</strong></td>
+          <td>아파트 입찰 공고 확인, 낙찰업체 확인</td>
+          <td>STEP 2, 4</td>
+        </tr>
+        <tr>
+          <td><strong>21라인</strong></td>
+          <td>입찰 공고 확인 (k-apt와 함께 사용)</td>
+          <td>STEP 2</td>
+        </tr>
+        <tr>
+          <td><strong>잔디 (JANDI)</strong></td>
+          <td>
+            사내 커뮤니케이션<br>
+            - <em>입찰공고</em> 토픽: 공고문 업로드<br>
+            - <em>기술자문컨설팅</em> 토픽: 세금계산서/입금완료 공지<br>
+            - <em>넷폼잔디</em>: 컨설팅 리스트 업로드
+          </td>
+          <td>전체</td>
+        </tr>
+        <tr>
+          <td><strong>모두사인</strong></td>
+          <td>전자서명 계약 체결 플랫폼</td>
+          <td>STEP 5</td>
+        </tr>
+        <tr>
+          <td><strong>구글 드라이브</strong></td>
+          <td>
+            문서 보관<br>
+            경로: 004.서비스/브랜드 → 008.기술자문컨설팅 → 2026년 → [현장명]
+          </td>
+          <td>전체</td>
+        </tr>
+        <tr>
+          <td><strong>카카오톡</strong></td>
+          <td>현장별 그룹채팅 (작업일보, 안전일보, 사진 업로드)</td>
+          <td>STEP 6~8</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <!-- ========== 자주 하는 실수/주의사항 ========== -->
+    <div class="slide-title">
+      <span class="badge">주의</span>
+      실수하기 쉬운 포인트
+    </div>
+
+    <div class="note note-danger" style="margin-bottom:10px;">
+      <span style="font-size:14pt;">1</span>
+      <div>
+        <b>안전관리 책임 혼동</b>
+        안전관리 책임은 100% '갑'(업체)입니다. 우리는 절대 안전관리에 대한 약속을 하면 안 됩니다. 계약서 제5조에 명시되어 있습니다.
+      </div>
+    </div>
+    <div class="note note-danger" style="margin-bottom:10px;">
+      <span style="font-size:14pt;">2</span>
+      <div>
+        <b>매일 현장 체크 누락</b>
+        현장카톡방에서 작업일보, 안전일보, <strong>안전장비 착용 사진</strong>을 매일 확인해야 합니다. 하루라도 빠뜨리면 나중에 문제가 됩니다.
+      </div>
+    </div>
+    <div class="note note-warn" style="margin-bottom:10px;">
+      <span style="font-size:14pt;">3</span>
+      <div>
+        <b>계약서 전달 안 받기</b>
+        업체가 발주처와 계약 체결 후 계약서를 반드시 전달받아야 합니다. 놓치면 나중에 금액 정산에서 문제가 생깁니다.
+      </div>
+    </div>
+    <div class="note note-warn" style="margin-bottom:10px;">
+      <span style="font-size:14pt;">4</span>
+      <div>
+        <b>금액 변동 시 변경 안내서 미발송</b>
+        현장 상황에 따라 자재+노무비가 변동될 수 있습니다. 변동 시 반드시 변경안내서를 발송해야 합니다.
+      </div>
+    </div>
+    <div class="note note-info" style="margin-bottom:10px;">
+      <span style="font-size:14pt;">5</span>
+      <div>
+        <b>사진첩 전달 후 통화 확인</b>
+        이메일로 사진 정리본을 보낸 뒤 반드시 업체 담당자와 <strong>전화 통화</strong>로 수신 확인합니다. 메일만 보내고 끝내면 안 됩니다.
+      </div>
+    </div>
+    <div class="note note-info">
+      <span style="font-size:14pt;">6</span>
+      <div>
+        <b>노무비 지급 지체</b>
+        업체가 노무비를 지체하면 기술 시공가능자가 노무를 제공하지 않을 수 있으며, 이 경우 <strong>우리(넷폼)는 책임이 없습니다</strong>. (계약서 제4조 ⑥항)
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="text-align:center; padding:20px 0;">
+      <p style="font-size:12pt; font-weight:700; color:var(--primary-dark); margin-bottom:8px;">
+        &#x1F4DE; 질문이 있으면 언제든 물어보세요!
+      </p>
+      <p style="font-size:9.5pt; color:var(--gray-600);">
+        본 자료는 2026 컨설팅 로드맵(수정본 260227) 기반으로 작성된 인수인계 초안입니다.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<button class="print-btn no-print" onclick="window.print()">&#x1F5A8; 인쇄하기</button>
+
+</body>
+</html>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기술자문 서비스 분류 체크리스트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f5f7fa;
+  color: #1f2937;
+  padding: 2rem 1rem;
+}
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* 헤더 */
+.page-header {
+  background: linear-gradient(135deg, #0d2137 0%, #1a365d 100%);
+  color: white;
+  padding: 2rem 2.5rem;
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #028090, #02c39a, #f0a500);
+}
+.page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 0.3rem;
+}
+.page-header .sub {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+.page-header .date {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  font-size: 0.78rem;
+  opacity: 0.5;
+}
+
+.content { padding: 2rem 2.5rem 2.5rem; }
+
+/* 범례 */
+.legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.2rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #475569;
+}
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.legend-dot.teal { background: #028090; }
+.legend-dot.orange { background: #f59e0b; }
+.legend-dot.gray { background: #94a3b8; }
+
+/* 섹션 */
+.section {
+  margin-bottom: 2rem;
+}
+.section:last-child { margin-bottom: 0; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid;
+}
+.section-header.teal { border-color: #028090; }
+.section-header.orange { border-color: #f59e0b; }
+.section-header.gray { border-color: #94a3b8; }
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+}
+.section-badge.teal { background: #028090; }
+.section-badge.orange { background: #f59e0b; }
+.section-badge.gray { background: #94a3b8; }
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.section-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 0.1rem;
+}
+
+/* 체크리스트 그룹 */
+.check-group {
+  margin-bottom: 1rem;
+}
+.check-group-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 0.5rem;
+  padding-left: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.check-group-title .step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+.check-group-title .step.teal { background: #028090; }
+.check-group-title .step.orange { background: #f59e0b; }
+
+/* 체크 아이템 */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 0.3rem;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.check-item:hover { background: #f1f5f9; }
+
+.check-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.check-item.checked .check-box {
+  background: #028090;
+  border-color: #028090;
+}
+.check-item.checked .check-box::after {
+  content: '✓';
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.check-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #334155;
+}
+.check-text .note {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.15rem;
+}
+
+/* 직영 특별 안내 */
+.notice-box {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.notice-box .icon { font-size: 1.2rem; flex-shrink: 0; }
+.notice-box .text { font-size: 0.85rem; color: #92400e; line-height: 1.6; }
+.notice-box .text strong { color: #78350f; }
+
+/* 부서별 협업 */
+.collab-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed #e2e8f0;
+}
+.collab-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.collab-card {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.collab-item {
+  flex: 1;
+  min-width: 250px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+.collab-item .dept {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #028090;
+  margin-bottom: 0.4rem;
+}
+.collab-item .role {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* 푸터 */
+.page-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* 인쇄 */
+@media print {
+  body { background: white; padding: 0; }
+  .page { box-shadow: none; border-radius: 0; }
+  .check-item:hover { background: transparent; }
+  .print-page { page-break-before: always; }
+  .print-page:first-of-type { page-break-before: avoid; }
+  .page-header { padding: 1.2rem 2rem; }
+  .content { padding: 1rem 2rem; }
+  .collab-section { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="page-header">
+    <h1>기술자문 서비스 분류 체크리스트</h1>
+    <div class="sub">㈜넷폼알앤디 · 대표 협의용</div>
+    <div class="date">2026.04.07</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== 비교표 ===== -->
+    <div style="margin-bottom:2.5rem;">
+      <div style="font-size:1.1rem; font-weight:700; margin-bottom:1rem; display:flex; align-items:center; gap:0.4rem;">📊 서비스 비교표</div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.82rem; line-height:1.6;">
+          <thead>
+            <tr>
+              <th style="background:#f1f5f9; padding:0.7rem 0.6rem; text-align:left; border:1px solid #e2e8f0; font-weight:700; color:#475569; width:24%;">구분</th>
+              <th style="background:#f59e0b; padding:0.7rem 0.5rem; text-align:center; border:1px solid #e2e8f0; font-weight:700; color:white; width:17%; font-size:0.78rem;">POUR 컨설팅<br><span style="font-size:0.65rem; opacity:0.8;">(옥상공사시공건)</span></th>
+              <th style="background:#028090; padding:0.7rem 0.5rem; text-align:center; border:1px solid #e2e8f0; font-weight:700; color:white; width:17%;">기술자문</th>
+              <th style="background:#64748b; padding:0.7rem 0.5rem; text-align:center; border:1px solid #e2e8f0; font-weight:700; color:white; width:17%; font-size:0.78rem;">직영<br><span style="font-size:0.65rem; opacity:0.8;">(서비스 이용)</span></th>
+              <th style="background:#94a3b8; padding:0.7rem 0.5rem; text-align:center; border:1px solid #e2e8f0; font-weight:700; color:white; width:17%; font-size:0.78rem;">직영<br><span style="font-size:0.65rem; opacity:0.8;">(서비스 미이용)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">수수료</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700; font-size:0.78rem;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700; font-size:0.78rem;">낙찰금액의 5%</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#dc2626; font-weight:700; font-size:0.78rem;">낙찰금액의 2%</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">실행가 전달</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#64748b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">견적 및 서류 작업</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#64748b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">입찰 및 계약 지원</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#64748b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">수의계약</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; font-size:0.75rem; color:#f59e0b;">입찰/낙찰 생략<br>→ 바로 계약서</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; font-size:0.75rem; color:#028090;">입찰/낙찰 생략<br>→ 바로 계약서</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; font-size:0.75rem; color:#64748b;">입찰/낙찰 생략<br>→ 바로 계약서</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">지원 서류 작성<br><span style="font-size:0.72rem; font-weight:400; color:#94a3b8;">제안서, 시방서, 현설자료, 공고문 등</span></td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅ (서류제공)</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#64748b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">영업지원<br><span style="font-size:0.72rem; font-weight:400; color:#94a3b8;">PT, 하자진단서 등</span></td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">행정 관리<br><span style="font-size:0.72rem; font-weight:400; color:#94a3b8;">자문보고방, 카톡방, 보드판</span></td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">현장 운영 및 인력 제공</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">자재 관리<br><span style="font-size:0.72rem; font-weight:400; color:#94a3b8;">발주, 출고, 회수, 폐기물</span></td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+            <tr>
+              <td style="padding:0.6rem 0.6rem; border:1px solid #e2e8f0; font-weight:600; background:#f8fafc;">사후 관리<br><span style="font-size:0.72rem; font-weight:400; color:#94a3b8;">하자보증, 준공 사진첩 등</span></td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#f59e0b; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#028090; font-weight:700;">✅</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+              <td style="padding:0.6rem 0.5rem; border:1px solid #e2e8f0; text-align:center; color:#ef4444;">❌</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:0.8rem; font-size:0.75rem; color:#64748b; line-height:1.6;">
+        ※ ✅ = 제공 &nbsp;|&nbsp; ✅ (서류제공) = 서류 제공 형태 &nbsp;|&nbsp; ❌ = 미제공
+      </div>
+    </div>
+
+    <!-- ===== PAGE 2: POUR 컨설팅 ===== -->
+    <div class="section print-page">
+      <div class="section-header orange">
+        <span class="section-badge orange">POUR 컨설팅</span>
+        <div>
+          <div class="section-title">POUR 공법 현장 전용 서비스</div>
+          <div class="section-desc">POUR 공법 적용 현장에 특화된 실무 지원 및 자재/인력 관리</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step orange">1</span> 기술 지원</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">PT(프레젠테이션) 지원</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">컨설팅 내역서 작성 (면적산출 포함)</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step orange">2</span> 현장 자료 제공</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">공고문 제공</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">현설자료 예시 제공</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">일위대가 제공</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">시험성적서 제공</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">단가표 제공</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step orange">3</span> 현장 운영 및 관리</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">현장 카톡방 운영 (당일 투입인원, 작업 보고 등)</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">현장 인력 제공</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">안전 장비 지원 (안전조끼, 안전헬멧 등 요청 시)</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step orange">4</span> 자재 관리</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">자재 발주 안내 (선정된 시공사 직접 발주 관련)</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">자재 출고</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">자재 회수 및 폐기물 수거</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step orange">5</span> 사후 관리</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">준공계 사진첩 제공</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">하자보증 (인력 투입 및 보수 조치)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE 3: 기술자문 ===== -->
+    <div class="section print-page">
+      <div class="section-header teal">
+        <span class="section-badge teal">기술자문</span>
+        <div>
+          <div class="section-title">기술자문료 포함 서비스</div>
+          <div class="section-desc">컨설팅 계약 체결 시 제공되는 업무 범위</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">1</span> 컨설팅 요청 및 접수</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">컨설팅 요청 접수 및 현장 자료 취합</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">컨설팅 및 실행가 요청</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">2</span> 실행가 확정 및 전달</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">실행금액 확정 → 컨설팅 요청자에게 실행가 전달</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">실행가 대비 견적금액 책정 요청</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">3</span> 견적 및 서류 작업</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">견적금액 확정 → 견적서 및 지원요청자료 작업</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">컨설팅 요청자 최종 컨펌 및 자료 발송</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">4</span> 입찰 및 계약 (일반)</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">입찰 진행</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">낙찰 → 계약서 작성</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">4</span> 수의계약 건</div>
+        <div class="notice-box" style="background:#e0f2fe; border-color:#7dd3fc; margin-bottom:0.5rem;">
+          <div class="icon">💡</div>
+          <div class="text" style="color:#0c4a6e;">
+            <strong>입찰/낙찰 과정 생략</strong> → 바로 계약서 작성 진행
+          </div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">계약서 작성 (입찰/낙찰 과정 없이 직접 진행)</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">5</span> 지원 서류 작성</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">제안서 / 시방서 / 현설자료 / 공고문 예시본</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">하자진단서 / 입주자대표회의 자료 / 공법비교표</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">6</span> 행정 관리</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">기술자문보고방 정보 업로드 / 카톡방 개설 확인</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">착준공일정 보드판 업데이트 및 관리</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step teal">7</span> 사후 관리</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">하자 발생 시 현장 확인 및 진단 / 하자진단서 작성</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">하자보증 인력 투입 및 보수 조치</div>
+        </div>
+      </div>
+
+      <div class="notice-box" style="background:#f0fdfa; border-color:#5eead4; margin-top:1rem;">
+        <div class="icon">💰</div>
+        <div class="text" style="color:#134e4a;">
+          <strong>기술자문료: 낙찰금액의 5% 수수료 발생</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE 4: 직영 현장 ===== -->
+    <div class="section print-page">
+      <div class="section-header gray">
+        <span class="section-badge gray">직영</span>
+        <div>
+          <div class="section-title">직영 현장</div>
+          <div class="section-desc">기술자문 미계약 시 서비스 범위</div>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <div class="icon">⚠️</div>
+        <div class="text">
+          <strong>기술자문 계약이 체결되지 않은 직영 현장에는 별도 지원 서비스가 제공되지 않습니다.</strong><br>
+          단, 아래 1~5번 서비스를 이용할 경우 <strong style="color:#dc2626;">낙찰금액의 2% 수수료가 발생</strong>합니다.
+        </div>
+      </div>
+
+      <div class="check-group" style="margin-top:1rem;">
+        <div class="check-group-title"><span class="step" style="background:#94a3b8;">1</span> 컨설팅 요청 및 접수</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">컨설팅 요청 접수 및 현장 자료 취합 / 실행가 요청</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step" style="background:#94a3b8;">2</span> 실행가 확정 및 전달</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">실행금액 확정 → 요청자 전달 / 견적금액 책정</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step" style="background:#94a3b8;">3</span> 견적 및 서류 작업</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">견적서 및 지원요청자료 작업 / 최종 컨펌 및 발송</div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step" style="background:#94a3b8;">4</span> 입찰 및 계약</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">입찰 진행 → 낙찰 → 계약서 작성
+            <span class="note">※ 수의계약 건: 입찰/낙찰 과정 생략 후 바로 계약서 작성</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title"><span class="step" style="background:#94a3b8;">5</span> 지원 서류 작성</div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">제안서 / 시방서 / 현설자료 / 공고문 예시본</div>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <div class="check-text">하자진단서 / 입주자대표회의 자료 / 공법비교표</div>
+        </div>
+      </div>
+
+      <div class="notice-box" style="background:#fef2f2; border-color:#fca5a5; margin-top:1rem;">
+        <div class="icon">💰</div>
+        <div class="text" style="color:#991b1b;">
+          <strong>위 1~5번 서비스 이용 시 낙찰금액의 2% 수수료 발생</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE 5: 현장운영팀 업무 비교 ===== -->
+    <div class="collab-section print-page">
+      <div class="collab-title">📊 현장운영팀 업무 현황 비교</div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+        <div style="flex:1; min-width:250px; background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:1.2rem;">
+          <div style="font-size:0.82rem; font-weight:700; color:#166534; margin-bottom:0.7rem; display:flex; align-items:center; gap:0.4rem;">
+            ✅ 기존 수행 업무 <span style="font-size:0.7rem; font-weight:400; color:#4ade80;">(로드맵 기준)</span>
+          </div>
+          <div style="font-size:0.82rem; color:#334155; line-height:1.8;">
+            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+              <span style="color:#22c55e;">●</span> 현장대리인계 작성 → 시공사 전달
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+              <span style="color:#22c55e;">●</span> 공정표 작성 → 시공사 전달
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+              <span style="color:#22c55e;">●</span> 카톡방 개설 → 시공사 전달
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+              <span style="color:#22c55e;">●</span> 자재 발주 진행
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem;">
+              <span style="color:#22c55e;">●</span> 계약 예정 현장 정보 확인
+            </div>
+          </div>
+        </div>
+        <div style="flex:1; min-width:250px; background:#fef2f2; border:1px solid #fca5a5; border-radius:10px; padding:1.2rem;">
+          <div style="font-size:0.82rem; font-weight:700; color:#991b1b; margin-bottom:0.7rem; display:flex; align-items:center; gap:0.4rem;">
+            ⚠️ 현재 수행 업무 <span style="font-size:0.7rem; font-weight:400; color:#f87171;">(축소됨)</span>
+          </div>
+          <div style="font-size:0.82rem; color:#334155; line-height:1.8;">
+            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+              <span style="color:#ef4444;">●</span> 시공사 운영 문제점 확인 및 응대 지원
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+              <span style="color:#ef4444;">●</span> 착공·준공 일정 확인
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+              <span style="color:#ef4444;">●</span> 현장 특이사항 지원
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem;">
+              <span style="color:#94a3b8; text-decoration:line-through;">●</span> <span style="color:#94a3b8; text-decoration:line-through;">현장대리인계 / 공정표 / 카톡방 요청 / 자재발주</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notice-box" style="background:#fffbeb; border-color:#fcd34d;">
+        <div class="icon">📌</div>
+        <div class="text" style="color:#92400e;">
+          <strong>기존 대비 미수행 업무:</strong> 현장대리인계 작성, 공정표 작성, 카톡방 개설 (시공사 전달), 자재 발주 진행이 현재 누락되고 있음. 해당 업무의 재배분 또는 복구 필요 여부 협의 필요.
+        </div>
+      </div>
+    </div>
+
+    <!-- 부서별 협업 -->
+    <div class="collab-section">
+      <div class="collab-title">🤝 부서별 협업 역할</div>
+      <div class="collab-card">
+        <div class="collab-item">
+          <div class="dept">서비스운영3팀 / 현장운영팀</div>
+          <div class="role">
+            전반적인 공사 진행에서 시공사 운영상 문제점 확인 및 응대 지연 시 백업 지원.
+            계약 예정 현장 정보 확인, 계약서/카톡방 개설 확인, 착공·준공 일정 및 현장 특이사항 관리.
+          </div>
+        </div>
+        <div class="collab-item">
+          <div class="dept">경영관리팀</div>
+          <div class="role">
+            전체 프로세스 완료 후 정산 업무 수행 및 세금계산서 발행 관리.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    © 2026 ㈜넷폼알앤디. 대표 협의용 내부 문서.
+  </div>
+
+</div>
+
+</body>
+</html>

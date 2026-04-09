@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기술컨설팅 계약서 매뉴얼 - ㈜넷폼알앤디</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 10mm; }
+  :root {
+    --primary: #1565c0;
+    --primary-dark: #0d47a1;
+    --primary-light: #e3f2fd;
+    --accent: #ff6f00;
+    --accent-light: #fff8e1;
+    --success: #2e7d32;
+    --success-light: #e8f5e9;
+    --warning: #f57f17;
+    --warning-light: #fffde7;
+    --danger: #c62828;
+    --danger-light: #ffebee;
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #eeeeee;
+    --gray-300: #e0e0e0;
+    --gray-500: #9e9e9e;
+    --gray-600: #757575;
+    --gray-700: #616161;
+    --gray-800: #424242;
+    --gray-900: #212121;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-size: 10pt; color: var(--gray-800); line-height: 1.6;
+    background: #f0f2f5;
+  }
+
+  /* ===== 전체 컨테이너 ===== */
+  .manual-wrap {
+    max-width: 210mm; margin: 0 auto; background: white;
+  }
+  @media screen {
+    .manual-wrap {
+      margin: 20px auto; box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      border-radius: 8px; overflow: hidden;
+    }
+  }
+  @media print {
+    body { background: white; }
+    .manual-wrap { box-shadow: none; margin: 0; }
+    .page-break { page-break-before: always; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .no-print { display: none !important; }
+  }
+
+  /* ===== 표지 ===== */
+  .cover {
+    background: linear-gradient(135deg, #0d47a1 0%, #1565c0 40%, #1976d2 100%);
+    color: white; text-align: center; padding: 80px 40px;
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .cover::after {
+    content: ''; position: absolute; bottom: -150px; left: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .cover-badge {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 24px; border-radius: 30px;
+    font-size: 10pt; font-weight: 500; letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+  .cover h1 { font-size: 28pt; font-weight: 800; letter-spacing: 4px; margin-bottom: 12px; }
+  .cover .subtitle { font-size: 14pt; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
+  .cover-info {
+    display: inline-flex; flex-direction: column; gap: 8px;
+    background: rgba(255,255,255,0.1); border-radius: 12px;
+    padding: 20px 40px; font-size: 10pt; opacity: 0.85;
+  }
+  .cover-footer {
+    position: absolute; bottom: 30px; font-size: 9pt; opacity: 0.6;
+  }
+
+  /* ===== 본문 ===== */
+  .content { padding: 30px 35px; }
+
+  /* ===== 목차 ===== */
+  .toc { padding: 30px 35px; }
+  .toc h2 {
+    font-size: 16pt; font-weight: 700; color: var(--primary-dark);
+    border-bottom: 3px solid var(--primary); padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .toc-list { list-style: none; }
+  .toc-list > li {
+    border-bottom: 1px dashed var(--gray-300);
+    padding: 10px 0;
+  }
+  .toc-list > li > a {
+    text-decoration: none; color: var(--gray-800);
+    font-weight: 600; font-size: 11pt;
+    display: flex; justify-content: space-between;
+  }
+  .toc-list > li > a:hover { color: var(--primary); }
+  .toc-sub { list-style: none; margin-top: 6px; padding-left: 20px; }
+  .toc-sub li { padding: 3px 0; }
+  .toc-sub li a {
+    text-decoration: none; color: var(--gray-600);
+    font-size: 9.5pt;
+  }
+
+  /* ===== 섹션 헤더 ===== */
+  .section { margin-bottom: 30px; }
+  .section-header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; padding: 14px 20px; border-radius: 8px;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-header .num {
+    background: rgba(255,255,255,0.2); width: 32px; height: 32px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14pt;
+  }
+  .section-header h2 { font-size: 14pt; font-weight: 700; }
+
+  /* ===== 단계 (Phase) ===== */
+  .phase {
+    margin-bottom: 20px; border: 1px solid var(--gray-200);
+    border-radius: 8px; overflow: hidden;
+  }
+  .phase-header {
+    padding: 10px 16px; font-weight: 700; font-size: 11pt;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .phase-header .icon { font-size: 16pt; }
+  .phase-body { padding: 14px 18px; }
+
+  .phase-blue .phase-header { background: var(--primary-light); color: var(--primary-dark); }
+  .phase-orange .phase-header { background: var(--accent-light); color: var(--accent); }
+  .phase-green .phase-header { background: var(--success-light); color: var(--success); }
+  .phase-red .phase-header { background: var(--danger-light); color: var(--danger); }
+  .phase-yellow .phase-header { background: var(--warning-light); color: var(--warning); }
+
+  /* ===== 담당자 태그 ===== */
+  .person {
+    display: inline-block; background: var(--primary-light);
+    color: var(--primary-dark); font-size: 8pt; font-weight: 600;
+    padding: 1px 8px; border-radius: 10px; margin-left: 4px;
+  }
+  .person.ext {
+    background: #fff3e0; color: #e65100;
+  }
+  .person.all {
+    background: #e8f5e9; color: #2e7d32;
+  }
+
+  /* ===== 리스트 ===== */
+  .task-list { list-style: none; }
+  .task-list > li {
+    padding: 6px 0; border-bottom: 1px dotted var(--gray-200);
+    display: flex; align-items: flex-start; gap: 6px;
+  }
+  .task-list > li:last-child { border-bottom: none; }
+  .task-list .bullet {
+    width: 6px; height: 6px; min-width: 6px;
+    border-radius: 50%; background: var(--primary);
+    margin-top: 7px;
+  }
+  .task-list .sub-list {
+    list-style: none; padding-left: 16px; margin-top: 4px;
+  }
+  .task-list .sub-list li {
+    padding: 2px 0; font-size: 9pt; color: var(--gray-700);
+  }
+  .task-list .sub-list li::before {
+    content: '- '; color: var(--gray-500);
+  }
+
+  /* ===== 테이블 ===== */
+  .info-table {
+    width: 100%; border-collapse: collapse;
+    margin: 10px 0; font-size: 9.5pt;
+  }
+  .info-table th, .info-table td {
+    border: 1px solid var(--gray-300);
+    padding: 8px 12px; text-align: left;
+  }
+  .info-table th {
+    background: var(--gray-100); font-weight: 600;
+    color: var(--gray-800); width: 130px; white-space: nowrap;
+  }
+  .info-table td { color: var(--gray-700); }
+
+  /* ===== 알림 박스 ===== */
+  .notice {
+    padding: 12px 16px; border-radius: 6px;
+    margin: 10px 0; font-size: 9.5pt;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .notice-info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+  .notice-warn { background: var(--warning-light); border-left: 4px solid var(--warning); }
+  .notice-danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+  .notice-success { background: var(--success-light); border-left: 4px solid var(--success); }
+  .notice .notice-icon { font-size: 14pt; line-height: 1; }
+  .notice .notice-text { flex: 1; }
+  .notice .notice-text strong { display: block; margin-bottom: 2px; }
+
+  /* ===== 플로우차트 ===== */
+  .flow-chart {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 0; margin: 16px 0; padding: 10px 0;
+  }
+  .flow-step {
+    background: white; border: 2px solid var(--primary);
+    border-radius: 8px; padding: 8px 14px;
+    text-align: center; font-size: 9pt; font-weight: 600;
+    color: var(--primary-dark); min-width: 90px;
+  }
+  .flow-arrow {
+    font-size: 16pt; color: var(--primary); margin: 0 4px;
+    font-weight: 700;
+  }
+  .flow-step.active {
+    background: var(--primary); color: white;
+  }
+
+  /* ===== 금액 계산 ===== */
+  .calc-box {
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: 8px; padding: 16px 20px; margin: 12px 0;
+  }
+  .calc-box h4 { font-size: 10pt; color: var(--primary-dark); margin-bottom: 8px; }
+  .calc-row {
+    display: flex; justify-content: space-between;
+    padding: 4px 0; font-size: 9.5pt; border-bottom: 1px dotted var(--gray-200);
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-row.total {
+    font-weight: 700; color: var(--primary-dark);
+    border-top: 2px solid var(--primary); margin-top: 6px; padding-top: 8px;
+  }
+
+  /* ===== 체크리스트 ===== */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 5px 0; display: flex; align-items: center; gap: 6px;
+    font-size: 9.5pt;
+  }
+  .checklist .check-box {
+    width: 14px; height: 14px; min-width: 14px;
+    border: 2px solid var(--gray-400); border-radius: 3px;
+  }
+
+  /* ===== 문서 구조 카드 ===== */
+  .doc-card {
+    border: 1px solid var(--gray-200); border-radius: 8px;
+    margin: 10px 0; overflow: hidden;
+  }
+  .doc-card-header {
+    background: var(--gray-100); padding: 8px 14px;
+    font-weight: 600; font-size: 10pt; border-bottom: 1px solid var(--gray-200);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .doc-card-body { padding: 12px 16px; font-size: 9.5pt; }
+
+  /* ===== 2컬럼 레이아웃 ===== */
+  .two-col { display: flex; gap: 16px; }
+  .two-col > div { flex: 1; }
+
+  /* ===== 구분선 ===== */
+  .divider {
+    border: none; border-top: 2px dashed var(--gray-300);
+    margin: 20px 0;
+  }
+
+  /* ===== 인쇄 네비게이션 숨김 ===== */
+  .print-btn {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--primary); color: white; border: none;
+    padding: 12px 24px; border-radius: 30px; font-size: 10pt;
+    font-weight: 600; cursor: pointer; z-index: 100;
+    box-shadow: 0 4px 12px rgba(21,101,192,0.4);
+  }
+  .print-btn:hover { background: var(--primary-dark); }
+
+  /* ===== 타임라인 ===== */
+  .timeline { position: relative; padding-left: 30px; margin: 10px 0; }
+  .timeline::before {
+    content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+    width: 2px; background: var(--primary-light);
+  }
+  .timeline-item { position: relative; margin-bottom: 14px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -24px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--primary); border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--primary-light);
+  }
+  .timeline-item h4 { font-size: 10pt; color: var(--primary-dark); margin-bottom: 3px; }
+  .timeline-item p { font-size: 9pt; color: var(--gray-700); }
+
+  /* ===== 계약서 조항 ===== */
+  .article { margin-bottom: 12px; }
+  .article-title {
+    font-weight: 700; font-size: 10.5pt; color: var(--gray-900);
+    margin-bottom: 4px;
+  }
+  .article-body { font-size: 9.5pt; color: var(--gray-700); padding-left: 10px; }
+  .article-body p { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="manual-wrap">
+
+  <!-- ===== 표지 ===== -->
+  <div class="cover">
+    <div class="cover-badge">NETFORM R&D MANUAL</div>
+    <h1>기술컨설팅 계약서<br>업무 매뉴얼</h1>
+    <div class="subtitle">기술 자문 컨설팅 전체 프로세스 가이드</div>
+    <div class="cover-info">
+      <span>㈜넷폼알앤디</span>
+      <span>2026년 컨설팅 로드맵 기반</span>
+      <span>Ver 1.0 | 초안</span>
+    </div>
+    <div class="cover-footer">본 매뉴얼은 사내 업무용으로 작성되었습니다.</div>
+  </div>
+
+  <!-- ===== 목차 ===== -->
+  <div class="toc page-break">
+    <h2>목 차</h2>
+    <ul class="toc-list">
+      <li>
+        <a href="#sec1">1. 매뉴얼 개요</a>
+      </li>
+      <li>
+        <a href="#sec2">2. 전체 프로세스 흐름도</a>
+      </li>
+      <li>
+        <a href="#sec3">3. PHASE 1 — 영업 / 견적 단계</a>
+        <ul class="toc-sub">
+          <li><a href="#sec3-1">3-1. 견적서 작성 (1차)</a></li>
+          <li><a href="#sec3-2">3-2. 영업보고</a></li>
+          <li><a href="#sec3-3">3-3. 드라이브 업로드</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#sec4">4. PHASE 2 — 입찰 / 현장설명회 단계</a>
+        <ul class="toc-sub">
+          <li><a href="#sec4-1">4-1. 입찰 공고 확인</a></li>
+          <li><a href="#sec4-2">4-2. 현장설명회 업체 배정</a></li>
+          <li><a href="#sec4-3">4-3. 견적서 작성 (업체)</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#sec5">5. PHASE 3 — 투찰 / 견적서 확정 단계</a>
+      </li>
+      <li>
+        <a href="#sec6">6. PHASE 4 — 낙찰 확인 / 리스트 등록 단계</a>
+        <ul class="toc-sub">
+          <li><a href="#sec6-1">6-1. 낙찰업체 확인 &amp; 컨설팅리스트 업로드</a></li>
+          <li><a href="#sec6-2">6-2. 기술자문컨설팅 넷폼 업로드</a></li>
+          <li><a href="#sec6-3">6-3. 업체계약서 초안 작성</a></li>
+          <li><a href="#sec6-4">6-4. 발주처 계약 체결 &amp; 계약서 전달</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#sec7">7. PHASE 5 — 컨설팅 계약 체결 단계</a>
+        <ul class="toc-sub">
+          <li><a href="#sec7-1">7-1. 컨설팅 계약서 작성</a></li>
+          <li><a href="#sec7-2">7-2. 모두사인 계약 체결</a></li>
+          <li><a href="#sec7-3">7-3. 업체 이메일 발송</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#sec8">8. PHASE 6 — 착공 단계</a>
+      </li>
+      <li>
+        <a href="#sec9">9. PHASE 7 — 시공 / 진행관리 단계</a>
+      </li>
+      <li>
+        <a href="#sec10">10. PHASE 8 — 사진첩 취합 / 마무리 단계</a>
+      </li>
+      <li>
+        <a href="#sec11">11. PHASE 9 — 준공 / 정산 단계</a>
+      </li>
+      <li>
+        <a href="#sec12">12. 계약서 구성 및 작성 가이드</a>
+        <ul class="toc-sub">
+          <li><a href="#sec12-1">12-1. 계약서 조항별 해설</a></li>
+          <li><a href="#sec12-2">12-2. 금액 산정 방식</a></li>
+          <li><a href="#sec12-3">12-3. 노임공문 작성</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#sec13">13. 변경 안내서 작성 가이드</a>
+      </li>
+      <li>
+        <a href="#sec14">14. 담당자별 업무 총괄표</a>
+      </li>
+      <li>
+        <a href="#sec15">15. 체크리스트 (단계별)</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ===== 1. 매뉴얼 개요 ===== -->
+  <div class="content page-break" id="sec1">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">1</div>
+        <h2>매뉴얼 개요</h2>
+      </div>
+
+      <div class="phase phase-blue">
+        <div class="phase-header">
+          <span class="icon">&#128214;</span> 목적 및 적용 범위
+        </div>
+        <div class="phase-body">
+          <p>본 매뉴얼은 ㈜넷폼알앤디의 <strong>기술 자문 컨설팅 계약</strong> 업무를 체계적으로 수행하기 위한 표준 절차를 정리한 문서입니다.</p>
+          <br>
+          <table class="info-table">
+            <tr><th>적용 대상</th><td>기술자문컨설팅 담당 전직원</td></tr>
+            <tr><th>기반 문서</th><td>2025 컨설팅 로드맵 (수정본 250624)</td></tr>
+            <tr><th>주요 문서</th><td>기술컨설팅 계약서, 노임공문, 변경 안내서</td></tr>
+            <tr><th>계약 상대</th><td>'갑' : 시공업체 / '을' : ㈜넷폼알앤디</td></tr>
+            <tr><th>전자계약</th><td>모두사인 (전자서명 플랫폼)</td></tr>
+            <tr><th>공고 확인</th><td>k-apt, 21라인</td></tr>
+          </table>
+
+          <div class="notice notice-info">
+            <span class="notice-icon">&#128161;</span>
+            <div class="notice-text">
+              <strong>핵심 포인트</strong>
+              본 컨설팅 계약은 POUR공법 등 기술도입에 따른 기술지도, 인력알선, 시공품질관리를 포함하며, 안전관리는 '갑'의 책임입니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2. 전체 프로세스 흐름도 ===== -->
+  <div class="content page-break" id="sec2">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">2</div>
+        <h2>전체 프로세스 흐름도</h2>
+      </div>
+
+      <p style="font-size:9.5pt; color:var(--gray-600); margin-bottom:12px;">
+        기술컨설팅 계약은 아래 9단계로 진행됩니다. 각 단계별 담당자와 핵심 업무를 확인하세요.
+      </p>
+
+      <!-- 상단 흐름: 계약 관련 -->
+      <div style="text-align:center; margin-bottom:8px; font-weight:700; color:var(--primary-dark); font-size:10pt;">
+        &#x1F4CB; 계약 프로세스
+      </div>
+      <div class="flow-chart">
+        <div class="flow-step">&#x2460; 영업/견적</div>
+        <div class="flow-arrow">&#x27A1;</div>
+        <div class="flow-step">&#x2461; 입찰/현설</div>
+        <div class="flow-arrow">&#x27A1;</div>
+        <div class="flow-step">&#x2462; 투찰/견적확정</div>
+        <div class="flow-arrow">&#x27A1;</div>
+        <div class="flow-step">&#x2463; 낙찰/리스트</div>
+        <div class="flow-arrow">&#x27A1;</div>
+        <div class="flow-step active">&#x2464; 계약체결</div>
+      </div>
+
+      <!-- 하단 흐름: 시공 관련 -->
+      <div style="text-align:center; margin-bottom:8px; margin-top:16px; font-weight:700; color:var(--success); font-size:10pt;">
+        &#x1F3D7; 시공 프로세스
+      </div>
+      <div class="flow-chart">
+        <div class="flow-step">&#x2465; 착공</div>
+        <div class="flow-arrow">&#x27A1;</div>
+        <div class="flow-step">&#x2466; 시공/관리</div>
+        <div class="flow-arrow">&#x27A1;</div>
+        <div class="flow-step">&#x2467; 사진첩/마무리</div>
+        <div class="flow-arrow">&#x27A1;</div>
+        <div class="flow-step active">&#x2468; 준공/정산</div>
+      </div>
+
+      <div class="notice notice-warn" style="margin-top:16px;">
+        <span class="notice-icon">&#x26A0;</span>
+        <div class="notice-text">
+          <strong>드라이브 업로드 규칙</strong>
+          모든 문서는 <strong>004.서비스/브랜드 → 008.기술자문컨설팅 → 2026년 → 현장별 폴더</strong>에 업로드합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 3. PHASE 1 - 영업/견적 ===== -->
+  <div class="content page-break" id="sec3">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">3</div>
+        <h2>PHASE 1 — 영업 / 견적 단계</h2>
+      </div>
+
+      <!-- 3-1 견적서 작성 -->
+      <div class="phase phase-blue" id="sec3-1">
+        <div class="phase-header">
+          <span class="icon">&#x1F4DD;</span>
+          3-1. 견적서 작성 (1차)
+          <span class="person">주현진</span><span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>
+                입찰 공고를 기반으로 <strong>1차 견적서</strong>를 작성합니다.
+                <ul class="sub-list">
+                  <li>공고문의 공사범위, 물량, 현장 조건 등을 분석</li>
+                  <li>기존 유사현장 견적을 참고하여 단가 산정</li>
+                  <li>1차 견적서는 추후 비교견적서 작성의 기초가 됩니다</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3-2 영업보고 -->
+      <div class="phase phase-orange" id="sec3-2" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4E2;</span>
+          3-2. 영업보고
+          <span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <p style="margin-bottom:8px;">잔디 <strong>영업지원토픽</strong>에 아래 정보를 공유합니다:</p>
+          <table class="info-table">
+            <tr><th>아파트명</th><td>(입찰 대상 아파트 기재)</td></tr>
+            <tr><th>주소</th><td>(현장 주소)</td></tr>
+            <tr><th>영업담당자</th><td>(담당자명)</td></tr>
+            <tr><th>공사종류</th><td>재도장 / 방수 / 시트 등</td></tr>
+            <tr><th>견적금액</th><td>(산출된 견적 금액)</td></tr>
+            <tr><th>실행예상금액</th><td>(실행 예상 금액)</td></tr>
+            <tr><th>실행 현장소장</th><td>(배정 예정 소장명)</td></tr>
+            <tr><th>시지원&amp;사후정산</th><td>유 / 무</td></tr>
+            <tr><th>발송일</th><td>(견적서 발송일)</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3-3 드라이브 -->
+      <div class="phase phase-green" id="sec3-3" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4C1;</span>
+          3-3. 드라이브 업로드
+        </div>
+        <div class="phase-body">
+          <div class="notice notice-info">
+            <span class="notice-icon">&#x1F4C2;</span>
+            <div class="notice-text">
+              <strong>업로드 경로</strong>
+              004.서비스/브랜드 → 008.기술자문컨설팅 → 2026년 → <strong>[현장명]</strong> 폴더에 업로드
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4. PHASE 2 - 입찰/현장설명회 ===== -->
+  <div class="content page-break" id="sec4">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">4</div>
+        <h2>PHASE 2 — 입찰 / 현장설명회 단계</h2>
+      </div>
+
+      <!-- 4-1 입찰 공고 확인 -->
+      <div class="phase phase-blue" id="sec4-1">
+        <div class="phase-header">
+          <span class="icon">&#x1F50D;</span>
+          4-1. 입찰 공고 확인
+          <span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>
+                <strong>k-apt, 21라인</strong>에서 입찰 공고를 확인합니다.
+                <ul class="sub-list">
+                  <li><strong>일반공고</strong> 해당 시: 공고문을 잔디 <em>입찰공고</em> 토픽에 업로드</li>
+                  <li><strong>시트공법</strong>의 경우 별도 확인 요청</li>
+                  <li>공고문 리스트도 잔디 <em>입찰공고</em> 토픽에 업로드</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4-2 현장설명회 -->
+      <div class="phase phase-orange" id="sec4-2" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F3E2;</span>
+          4-2. 현장설명회 업체 배정
+          <span class="person ext">업체</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>현장설명회에 참석할 업체를 배정합니다.
+                <ul class="sub-list">
+                  <li>업체 요청 시 컨설팅업체(넷폼)도 참석 가능</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4-3 견적서 작성 (업체) -->
+      <div class="phase phase-green" id="sec4-3" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4B0;</span>
+          4-3. 견적서 작성 (업체 / 비교견적서)
+          <span class="person ext">업체</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>
+                1차 견적서를 토대로 <strong>비교견적서</strong>를 작성하여 분배합니다.
+              </div>
+            </li>
+          </ul>
+
+          <div class="notice notice-warn">
+            <span class="notice-icon">&#x26A0;</span>
+            <div class="notice-text">
+              <strong>업체가 견적서를 작성하지 않을 경우</strong>
+              주현진 &amp; 송보람이 직접 1차 견적서 토대로 비교견적서를 작성 후 분배합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 5. PHASE 3 - 투찰/견적확정 ===== -->
+  <div class="content page-break" id="sec5">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">5</div>
+        <h2>PHASE 3 — 투찰 / 견적서 확정 단계</h2>
+      </div>
+
+      <div class="phase phase-blue">
+        <div class="phase-header">
+          <span class="icon">&#x1F4E8;</span>
+          현설 이후 견적서 작성 (2차)
+          <span class="person">주현진</span><span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>
+                현장설명회에서 나온 내용을 토대로 <strong>2차 견적서</strong>를 작성합니다.
+                <ul class="sub-list">
+                  <li>현설 결과에 따라 물량, 공법, 범위 등이 변경될 수 있음</li>
+                  <li>변경사항을 반영하여 최종 견적서 확정</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase phase-orange" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x2705;</span>
+          투찰 여부 파악
+          <span class="person ext">업체</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>각 업체별로 <strong>투찰을 했는지 여부</strong>를 파악합니다.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6. PHASE 4 - 낙찰확인/리스트등록 ===== -->
+  <div class="content page-break" id="sec6">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">6</div>
+        <h2>PHASE 4 — 낙찰 확인 / 리스트 등록 단계</h2>
+      </div>
+
+      <!-- 6-1 -->
+      <div class="phase phase-blue" id="sec6-1">
+        <div class="phase-header">
+          <span class="icon">&#x1F3C6;</span>
+          6-1. 낙찰업체 확인 &amp; 컨설팅리스트 업로드
+          <span class="person all">공통</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div><strong>k-apt</strong>에서 낙찰업체를 확인합니다.</div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div>
+                컨설팅리스트 업로드 <span class="person">송보람(정)</span><span class="person">주현진(부)</span>
+                <ul class="sub-list">
+                  <li>기술자문컨설팅 넷폼 잔디 공유</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6-2 -->
+      <div class="phase phase-orange" id="sec6-2" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4CB;</span>
+          6-2. 기술자문컨설팅 업로드 (넷폼 잔디)
+          <span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <p style="margin-bottom:8px;">넷폼 잔디에 아래 정보를 기재하여 업로드합니다:</p>
+          <div class="two-col">
+            <div>
+              <table class="info-table">
+                <tr><th>아파트명</th><td></td></tr>
+                <tr><th>영업담당자명</th><td></td></tr>
+                <tr><th>업체명</th><td></td></tr>
+                <tr><th>업체담당자</th><td></td></tr>
+                <tr><th>LRC확인</th><td></td></tr>
+                <tr><th>낙찰금액</th><td></td></tr>
+                <tr><th>실행금액</th><td></td></tr>
+              </table>
+            </div>
+            <div>
+              <table class="info-table">
+                <tr><th>시지원유무</th><td></td></tr>
+                <tr><th>사후정산유무</th><td></td></tr>
+                <tr><th>컨설팅종류</th><td></td></tr>
+                <tr><th>사진첩유무</th><td></td></tr>
+                <tr><th>현장소장</th><td></td></tr>
+                <tr><th>착공예정일</th><td></td></tr>
+                <tr><th>범위 / 현장사진</th><td></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6-3 -->
+      <div class="phase phase-green" id="sec6-3" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4C4;</span>
+          6-3. 업체계약서 초안 작성 &amp; 발송
+          <span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div><strong>넷폼 양식</strong>대로 계약서 초안을 작성하여 업체에 발송합니다.</div>
+            </li>
+          </ul>
+          <div class="notice notice-info">
+            <span class="notice-icon">&#128206;</span>
+            <div class="notice-text">
+              계약서 양식은 <strong>12장. 계약서 구성 및 작성 가이드</strong>를 참조하세요.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6-4 -->
+      <div class="phase phase-yellow" id="sec6-4" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F91D;</span>
+          6-4. 발주처 계약 체결 &amp; 계약서 전달
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div><strong>발주처와 계약 체결</strong>은 업체가 진행합니다. <span class="person ext">업체</span>
+                <ul class="sub-list">
+                  <li>업체 요청 시 컨설팅업체 참석 가능</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div>계약 완료 후 <strong>계약서를 컨설팅업체에 전달</strong> 요청합니다. <span class="person">송보람</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 7. PHASE 5 - 계약체결 ===== -->
+  <div class="content page-break" id="sec7">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">7</div>
+        <h2>PHASE 5 — 컨설팅 계약 체결 단계</h2>
+      </div>
+
+      <!-- 7-1 -->
+      <div class="phase phase-blue" id="sec7-1">
+        <div class="phase-header">
+          <span class="icon">&#x1F4DD;</span>
+          7-1. 컨설팅 계약서 작성
+          <span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <p style="margin-bottom:8px;">넷폼 표준 양식에 따라 기술 자문 컨설팅 계약서를 작성합니다.</p>
+          <div class="notice notice-info">
+            <span class="notice-icon">&#128206;</span>
+            <div class="notice-text">
+              <strong>계약서에 포함되는 핵심 정보</strong>
+              계약명, 계약이행장소, 기술보증기간, 지급방법(잔금 100%), 계약 총 금액
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7-2 -->
+      <div class="phase phase-orange" id="sec7-2" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x270D;</span>
+          7-2. 모두사인 계약 체결
+          <span class="person">송보람</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div><strong>모두사인</strong>(전자서명 플랫폼)을 통해 계약을 체결합니다.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7-3 -->
+      <div class="phase phase-green" id="sec7-3" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4E7;</span>
+          7-3. 업체 이메일 발송 &amp; 예정공정표 요청
+          <span class="person">김성민</span>
+        </div>
+        <div class="phase-body">
+          <p style="margin-bottom:8px;">업체에 아래 내용을 이메일로 발송합니다:</p>
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>현장소장 인적사항</div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div>현장 예정공정표</div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div>현장 안내사항</div>
+            </li>
+          </ul>
+          <div class="notice notice-warn">
+            <span class="notice-icon">&#x26A0;</span>
+            <div class="notice-text">
+              <strong>예정공정표 요청</strong>
+              담당소장에게 예정공정표를 먼저 요청한 후 업체에 발송합니다. <span class="person">김성민</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 8. PHASE 6 - 착공 ===== -->
+  <div class="content page-break" id="sec8">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">8</div>
+        <h2>PHASE 6 — 착공 단계</h2>
+      </div>
+
+      <div class="phase phase-blue">
+        <div class="phase-header">
+          <span class="icon">&#x1F4F1;</span>
+          8-1. 현장카톡 개설
+          <span class="person">김성민</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>
+                현장 카카오톡 그룹을 개설하고 <strong>현장정보를 공유</strong>합니다.
+                <ul class="sub-list">
+                  <li>현장명, 현장위치, 착공일, 공사범위, 공사기간 등</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase phase-orange" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4C3;</span>
+          8-2. 개시신고 / 착공계 작성
+          <span class="person ext">업체</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div><strong>개시신고</strong> — 업체가 진행</div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div><strong>착공계 작성 및 발송</strong> — 업체가 진행</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase phase-green" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4C4;</span>
+          8-3. 현장팀 작성서류
+          <span class="person ext">업체</span>
+        </div>
+        <div class="phase-body">
+          <ul class="checklist">
+            <li><span class="check-box"></span>일용근로계약서</li>
+            <li><span class="check-box"></span>안전수칙서약서</li>
+            <li><span class="check-box"></span>작업일보</li>
+            <li><span class="check-box"></span>안전일보</li>
+            <li><span class="check-box"></span>위험성 평가표</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 9. PHASE 7 - 시공/진행관리 ===== -->
+  <div class="content page-break" id="sec9">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">9</div>
+        <h2>PHASE 7 — 시공 / 진행관리 단계</h2>
+      </div>
+
+      <div class="phase phase-blue">
+        <div class="phase-header">
+          <span class="icon">&#x1F3D7;</span>
+          9-1. 현장 방문 &amp; 작업 전 준비
+          <span class="person ext">업체</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>현장 방문 (업체 요청 시 컨설팅업체 참석)</div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div>
+                <strong>작업 전 해야 할 일</strong> — 책임자(현장소장)
+                <ul class="sub-list">
+                  <li>현장팀 일용근로계약서, 안전수칙서약서 작성</li>
+                  <li>작업일보, 안전일보 매일 작성</li>
+                  <li>안전장비 착용 후 사진 촬영</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase phase-orange" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x2705;</span>
+          9-2. 매일 체크사항
+          <span class="person">김성민</span>
+        </div>
+        <div class="phase-body">
+          <div class="notice notice-danger">
+            <span class="notice-icon">&#x1F534;</span>
+            <div class="notice-text">
+              <strong>매일 반드시 체크!</strong>
+              현장카톡방을 확인하여 작업일보, 안전일보, 작업사진이 매일 업로드되고 있는지 확인합니다.
+              <strong>안전장비 착용 사진</strong>도 반드시 확인합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-green" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4B5;</span>
+          9-3. 중도금 신청 &amp; 중간정산
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>
+                현장카톡방에 <strong>중도금 신청시기 알림</strong> <span class="person">김성민</span>
+              </div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div>
+                중도금 신청시기 <strong>전화 전달</strong> <span class="person">김성민</span>
+              </div>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <div>
+                업체에 <strong>중간정산서 요청 및 확인</strong> <span class="person">이지연</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="notice notice-info">
+            <span class="notice-icon">&#128161;</span>
+            <div class="notice-text">
+              <strong>시공기술지도</strong>
+              시공팀에서 시공기술지도 요청 시, 기술지도를 진행합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 10. PHASE 8 - 사진첩/마무리 ===== -->
+  <div class="content page-break" id="sec10">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">10</div>
+        <h2>PHASE 8 — 사진첩 취합 / 마무리 단계</h2>
+      </div>
+
+      <div class="phase phase-blue">
+        <div class="phase-header">
+          <span class="icon">&#x1F4F7;</span>
+          10-1. 사진첩 취합
+          <span class="person">김성민</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>
+                사진을 정리하여 <strong>정리본을 업체에 이메일로 전달</strong>합니다.
+                <ul class="sub-list">
+                  <li>이메일 발송 후 업체담당자와 통화하여 수신 확인</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 11. PHASE 9 - 준공/정산 ===== -->
+  <div class="content page-break" id="sec11">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">11</div>
+        <h2>PHASE 9 — 준공 / 정산 단계</h2>
+      </div>
+
+      <div class="phase phase-blue">
+        <div class="phase-header">
+          <span class="icon">&#x1F3C1;</span>
+          11-1. 준공계 작성 및 발송
+          <span class="person ext">업체</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li><span class="bullet"></span><div>업체가 준공계를 작성하여 발송합니다.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase phase-orange" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4B0;</span>
+          11-2. 대금 관련
+          <span class="person">이지연</span>
+        </div>
+        <div class="phase-body">
+          <ul class="checklist">
+            <li><span class="check-box"></span>준공계 발송 유무 확인</li>
+            <li><span class="check-box"></span>세금계산서 발행 유무 확인</li>
+            <li><span class="check-box"></span>대금 수금 확인</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase phase-green" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F4B3;</span>
+          11-3. 대금 입금 완료 시점
+          <span class="person">이지연</span>
+        </div>
+        <div class="phase-body">
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>① 최종정산서 요청</h4>
+              <p>업체에 최종정산서를 요청합니다.</p>
+            </div>
+            <div class="timeline-item">
+              <h4>② 업체 소통 및 정산 <span class="person all">공통</span></h4>
+              <p>정산서 관련 마무리 및 세금계산서 발행 전달 &amp; 입금예정일 확인</p>
+            </div>
+            <div class="timeline-item">
+              <h4>③ 컨설팅 세금계산서 발행 요청</h4>
+              <p>기술컨설팅 토픽방에 공유합니다.</p>
+            </div>
+            <div class="timeline-item">
+              <h4>④ 기술컨설팅현황 업로드 마무리</h4>
+              <p>대금 입금 완료 시 기술컨설팅현황 업로드를 마무리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-yellow" style="margin-top:12px;">
+        <div class="phase-header">
+          <span class="icon">&#x1F9FE;</span>
+          11-4. 세금계산서 발행 및 입금확인
+          <span class="person">주유진</span>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li>
+              <span class="bullet"></span>
+              <div>잔디 토픽 <strong>기술자문컨설팅</strong>에 세금계산서 및 입금완료 토픽공지를 올립니다.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 12. 계약서 구성 및 작성 가이드 ===== -->
+  <div class="content page-break" id="sec12">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">12</div>
+        <h2>계약서 구성 및 작성 가이드</h2>
+      </div>
+
+      <p style="font-size:9.5pt; color:var(--gray-600); margin-bottom:16px;">
+        기술 자문 컨설팅 계약서는 <strong>13개 조항</strong>으로 구성되며, 별첨으로 <strong>노임공문</strong>이 포함됩니다.
+      </p>
+
+      <!-- 12-1 조항별 해설 -->
+      <div id="sec12-1">
+        <h3 style="font-size:12pt; color:var(--primary-dark); margin-bottom:12px; border-left:4px solid var(--primary); padding-left:10px;">
+          12-1. 계약서 조항별 해설
+        </h3>
+
+        <div class="doc-card">
+          <div class="doc-card-header">&#x1F4C4; 계약서 기본 정보 (앞면)</div>
+          <div class="doc-card-body">
+            <table class="info-table">
+              <tr><th>1. 계약명</th><td>[아파트명] [공사종류]공사 (예: ○○아파트 균열보수 및 재도장공사)</td></tr>
+              <tr><th>2. 계약이행장소</th><td>현장 주소 기재</td></tr>
+              <tr><th>3. 기술 보증기간</th><td>○년 (현장별 협의)</td></tr>
+              <tr><th>4. 지급방법</th><td>잔금 (계약금액의 100%, '갑'의 준공검사 후) 일시 지급</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-card-header">&#x2696; 주요 조항 요약</div>
+          <div class="doc-card-body">
+            <div class="article">
+              <div class="article-title">제1조 (목적)</div>
+              <div class="article-body">
+                <p>'갑'(시공업체)과 '을'(넷폼알앤디)의 권리·의무를 규정</p>
+              </div>
+            </div>
+            <div class="article">
+              <div class="article-title">제2조 (계약 기술의 특정)</div>
+              <div class="article-body">
+                <p>기술의 구체적 내용을 '을'과 협의하에 수시로 정할 수 있음</p>
+              </div>
+            </div>
+            <div class="article">
+              <div class="article-title">제3조 (용역제공) — 핵심 조항</div>
+              <div class="article-body">
+                <p><strong>[주된 용역]</strong></p>
+                <p>1. 기술 시공가능자 물색, 알선, 접촉 및 교육</p>
+                <p>2. 시공품질관리 감독지원 및 기술지도</p>
+                <p>3. 공정관리 (단, 안전관리는 제외)</p>
+                <p>4. 자재 적치관리업무</p>
+                <p style="margin-top:6px;"><strong>[부수적 용역]</strong></p>
+                <p>1. 설계변경 자문용역</p>
+                <p>2. 시공품질 하자 보수비용 보증 (○년 기한)</p>
+              </div>
+            </div>
+            <div class="article">
+              <div class="article-title">제4조 (보수)</div>
+              <div class="article-body">
+                <p>잔금 지급시기로부터 7일 이내에 '을'에게 지급</p>
+                <p>노무비는 공정률에 따라 지체 없이 지급</p>
+              </div>
+            </div>
+            <div class="article">
+              <div class="article-title">제5조 (면책)</div>
+              <div class="article-body">
+                <p>노무비·공사경비는 '갑'이 직접 부담</p>
+                <p><strong>안전관리 책임은 '갑'에게 귀속</strong> (핵심!)</p>
+                <p>하자 원칙: '갑' 책임, 단 기술 자체 하자 시 '을' 책임</p>
+              </div>
+            </div>
+            <div class="article">
+              <div class="article-title">제6조 (상호협조)</div>
+              <div class="article-body"><p>업무 연락사항 수시 보고 및 자료 제공 의무</p></div>
+            </div>
+            <div class="article">
+              <div class="article-title">제7조 (비밀유지의무)</div>
+              <div class="article-body"><p>계약 관련 모든 자료는 용역 이행 목적으로만 사용</p></div>
+            </div>
+            <div class="article">
+              <div class="article-title">제8조 (계약의 완료)</div>
+              <div class="article-body"><p>양 당사자 기명날인 시 효력 발생, 준공 후 ○년간 하자보증 유효</p></div>
+            </div>
+            <div class="article">
+              <div class="article-title">제9조 (계약의 해지)</div>
+              <div class="article-body"><p>원칙적 해지 불가, 의무 위반 시 통보로 해지 가능</p></div>
+            </div>
+            <div class="article">
+              <div class="article-title">제10조 (불가항력)</div>
+              <div class="article-body"><p>천재지변·불가항력 손해에 대해 양 당사자 면책</p></div>
+            </div>
+            <div class="article">
+              <div class="article-title">제11조 (분쟁해결)</div>
+              <div class="article-body"><p>관할법원: 서울중앙지방법원</p></div>
+            </div>
+            <div class="article">
+              <div class="article-title">제12조 (계약의 효력)</div>
+              <div class="article-body"><p>서명 날인일부터 유효</p></div>
+            </div>
+            <div class="article">
+              <div class="article-title">제13조 (해석)</div>
+              <div class="article-body"><p>미기재 사항은 쌍방 합의로 결정, 계약서 2통 작성 후 각 1통 보관</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- 12-2 금액 산정 방식 -->
+      <div id="sec12-2">
+        <h3 style="font-size:12pt; color:var(--primary-dark); margin-bottom:12px; border-left:4px solid var(--primary); padding-left:10px;">
+          12-2. 금액 산정 방식
+        </h3>
+
+        <p style="font-size:9.5pt; margin-bottom:12px;">공사 유형에 따라 아래 2가지 방식으로 금액이 산정됩니다.</p>
+
+        <div class="two-col">
+          <div>
+            <div class="calc-box">
+              <h4>&#x1F4CA; Type A: -10% 공사 컨설팅 (예시)</h4>
+              <div class="calc-row"><span>낙찰금액</span><span>180,000,000원</span></div>
+              <div class="calc-row"><span>-10% (업체실행단가)</span><span>162,000,000원</span></div>
+              <div class="calc-row"><span>현장소장 실행비</span><span>105,000,000원</span></div>
+              <div class="calc-row total"><span>컨설팅비</span><span>57,000,000원</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="calc-box">
+              <h4>&#x1F4CA; Type B: -5% 공사 컨설팅 (예시)</h4>
+              <div class="calc-row"><span>낙찰금액</span><span>100,000,000원</span></div>
+              <div class="calc-row"><span>영업이사정산비</span><span>35,000,000원</span></div>
+              <div class="calc-row"><span>현장소장 실행비</span><span>50,000,000원</span></div>
+              <div class="calc-row total"><span>컨설팅비 (5%)</span><span>5,000,000원</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice notice-info" style="margin-top:10px;">
+          <span class="notice-icon">&#128161;</span>
+          <div class="notice-text">
+            <strong>계약서 기재 금액</strong>
+            계약서 4조에는 <strong>컨설팅비</strong>만 기재됩니다. 잔금 100%로 준공검사 후 일시 지급됩니다.
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- 12-3 노임공문 -->
+      <div id="sec12-3">
+        <h3 style="font-size:12pt; color:var(--primary-dark); margin-bottom:12px; border-left:4px solid var(--primary); padding-left:10px;">
+          12-3. 노임공문 작성 가이드
+        </h3>
+
+        <p style="font-size:9.5pt; margin-bottom:12px;">계약서와 함께 <strong>기술자 노무비 금액 안내 공문</strong>을 발송합니다.</p>
+
+        <div class="doc-card">
+          <div class="doc-card-header">&#x1F4E8; 노임공문 구성</div>
+          <div class="doc-card-body">
+            <table class="info-table">
+              <tr><th>수신</th><td>계약 업체명</td></tr>
+              <tr><th>제목</th><td>기술 컨설팅 계약서 기술자 노무비 금액 안내 공문</td></tr>
+              <tr><th>자재+노무 금액</th><td>현장소장 실행비 (= 낙찰금액 - 컨설팅비)</td></tr>
+            </table>
+
+            <div class="calc-box" style="margin-top:12px;">
+              <h4>&#x1F4B0; 노무비 지급 구조</h4>
+              <div class="calc-row"><span>착수금 (자재+노무비의 30%)</span><span>기술자재 현장반입 및 인력 투입 시</span></div>
+              <div class="calc-row"><span>중도금 (자재+노무비의 40%)</span><span>공정률 60% 도달 시</span></div>
+              <div class="calc-row"><span>준공잔금 (자재+노무비의 30%)</span><span>공사완료 후</span></div>
+            </div>
+
+            <div class="notice notice-warn" style="margin-top:8px;">
+              <span class="notice-icon">&#x26A0;</span>
+              <div class="notice-text">
+                현장 상황에 따라 자재+노무비 금액이 변동될 수 있으며, 변동 시 <strong>변경안내서</strong>를 송부합니다.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 13. 변경 안내서 작성 가이드 ===== -->
+  <div class="content page-break" id="sec13">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">13</div>
+        <h2>변경 안내서 작성 가이드</h2>
+      </div>
+
+      <p style="font-size:9.5pt; color:var(--gray-600); margin-bottom:16px;">
+        계약 금액이 변동될 경우, 아래 3가지 유형 중 해당되는 변경공문을 작성하여 발송합니다.
+      </p>
+
+      <!-- Type 1 -->
+      <div class="doc-card">
+        <div class="doc-card-header" style="background:var(--primary-light); color:var(--primary-dark);">
+          &#x1F4C4; 유형 1: 선급금 청구 전 변경공문
+        </div>
+        <div class="doc-card-body">
+          <table class="info-table">
+            <tr><th>적용 시점</th><td>선급금 청구 전에 금액이 변동된 경우</td></tr>
+            <tr><th>적용 범위</th><td>컨설팅 계약 총 금액 + 기술자 노무비 총액 + 자재판매계약 총액</td></tr>
+            <tr><th>비고</th><td>선급금 지급 요청서에서부터 변경 금액 적용</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Type 2 -->
+      <div class="doc-card">
+        <div class="doc-card-header" style="background:var(--accent-light); color:var(--accent);">
+          &#x1F4C4; 유형 2: 변경공문 (컨설팅)
+        </div>
+        <div class="doc-card-body">
+          <table class="info-table">
+            <tr><th>적용 시점</th><td>컨설팅 금액만 변동된 경우</td></tr>
+            <tr><th>적용 범위</th><td>컨설팅 계약 총 금액 (당초 → 변경 후)</td></tr>
+            <tr><th>비고</th><td>잔금 금액에서 변동 적용</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Type 3 -->
+      <div class="doc-card">
+        <div class="doc-card-header" style="background:var(--success-light); color:var(--success);">
+          &#x1F4C4; 유형 3: 변경공문 (노무비 &amp; 컨설팅)
+        </div>
+        <div class="doc-card-body">
+          <table class="info-table">
+            <tr><th>적용 시점</th><td>노무비와 컨설팅비가 모두 변동된 경우</td></tr>
+            <tr><th>적용 범위</th><td>컨설팅 계약 총 금액 + 기술자 노무비 총액 + 자재판매계약 총액</td></tr>
+            <tr><th>비고</th><td>잔금 금액에서 변동 적용</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="notice notice-info" style="margin-top:12px;">
+        <span class="notice-icon">&#128206;</span>
+        <div class="notice-text">
+          <strong>공통 기재 사항</strong>
+          수신(업체명), 제목, 계약일, 당초/변경 후 금액(VAT 별도), 문서번호, 시행일자
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 14. 담당자별 업무 총괄표 ===== -->
+  <div class="content page-break" id="sec14">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">14</div>
+        <h2>담당자별 업무 총괄표</h2>
+      </div>
+
+      <table class="info-table" style="font-size:9pt;">
+        <thead>
+          <tr style="background:var(--primary); color:white;">
+            <th style="color:white; width:80px;">담당자</th>
+            <th style="color:white;">주요 업무</th>
+            <th style="color:white; width:100px;">관련 단계</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;">송보람</td>
+            <td>
+              견적서 작성(1차), 입찰공고 확인(k-apt/21라인), 컨설팅리스트 업로드(정),<br>
+              기술자문컨설팅 잔디 업로드, 업체계약서 초안 작성·발송,<br>
+              컨설팅 계약서 작성, 모두사인 계약체결, 계약서 전달 요청
+            </td>
+            <td>PHASE 1~5</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">주현진</td>
+            <td>
+              견적서 작성(1차), 컨설팅리스트 업로드(부),<br>
+              견적서 작성(업체 미작성 시 대행)
+            </td>
+            <td>PHASE 1~4</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">김성민</td>
+            <td>
+              예정공정표 요청, 업체 이메일 발송,<br>
+              현장카톡 개설, 매일 현장체크,<br>
+              중도금 신청시기 알림, 사진첩 취합
+            </td>
+            <td>PHASE 5~8</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">이지연</td>
+            <td>
+              중간정산서 요청·확인, 준공계 발송 확인,<br>
+              세금계산서 발행 확인, 대금 수금 확인,<br>
+              최종정산서 요청, 업체 소통 및 정산
+            </td>
+            <td>PHASE 7~9</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">주유진</td>
+            <td>
+              세금계산서 발행 및 입금확인,<br>
+              기술자문컨설팅 토픽 공지
+            </td>
+            <td>PHASE 9</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; color:var(--accent);">업체</td>
+            <td>
+              현장설명회 참석, 비교견적서 작성, 투찰,<br>
+              발주처 계약체결, 개시신고, 착공계 발송,<br>
+              현장팀 서류 작성, 준공계 발송
+            </td>
+            <td>전 단계</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== 15. 체크리스트 ===== -->
+  <div class="content page-break" id="sec15">
+    <div class="section">
+      <div class="section-header">
+        <div class="num">15</div>
+        <h2>체크리스트 (단계별)</h2>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <!-- 계약 프로세스 체크리스트 -->
+          <div class="doc-card">
+            <div class="doc-card-header" style="background:var(--primary-light); color:var(--primary-dark);">
+              &#x1F4CB; 계약 프로세스 체크리스트
+            </div>
+            <div class="doc-card-body">
+              <ul class="checklist">
+                <li><span class="check-box"></span>1차 견적서 작성 완료</li>
+                <li><span class="check-box"></span>영업보고 (잔디 업로드)</li>
+                <li><span class="check-box"></span>드라이브 현장폴더 생성</li>
+                <li><span class="check-box"></span>입찰공고 확인 (k-apt)</li>
+                <li><span class="check-box"></span>공고문 잔디 업로드</li>
+                <li><span class="check-box"></span>현설 업체 배정</li>
+                <li><span class="check-box"></span>비교견적서 작성·분배</li>
+                <li><span class="check-box"></span>2차 견적서 작성 (현설 후)</li>
+                <li><span class="check-box"></span>투찰 여부 파악</li>
+                <li><span class="check-box"></span>낙찰업체 확인</li>
+                <li><span class="check-box"></span>컨설팅리스트 업로드</li>
+                <li><span class="check-box"></span>기술자문컨설팅 넷폼 업로드</li>
+                <li><span class="check-box"></span>업체계약서 초안 발송</li>
+                <li><span class="check-box"></span>발주처 계약 체결 확인</li>
+                <li><span class="check-box"></span>계약서 넷폼 전달 확인</li>
+                <li><span class="check-box"></span>컨설팅 계약서 작성</li>
+                <li><span class="check-box"></span>모두사인 계약 체결</li>
+                <li><span class="check-box"></span>업체 이메일 발송</li>
+                <li><span class="check-box"></span>예정공정표 수령</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- 시공 프로세스 체크리스트 -->
+          <div class="doc-card">
+            <div class="doc-card-header" style="background:var(--success-light); color:var(--success);">
+              &#x1F3D7; 시공 프로세스 체크리스트
+            </div>
+            <div class="doc-card-body">
+              <ul class="checklist">
+                <li><span class="check-box"></span>현장카톡 개설</li>
+                <li><span class="check-box"></span>현장정보 공유</li>
+                <li><span class="check-box"></span>개시신고 완료 (업체)</li>
+                <li><span class="check-box"></span>착공계 발송 (업체)</li>
+                <li><span class="check-box"></span>현장팀 서류 수령</li>
+                <li><span class="check-box"></span>현장방문 (업체)</li>
+                <li><span class="check-box"></span>매일 체크 (작업일보/안전일보)</li>
+                <li><span class="check-box"></span>안전장비 착용 사진 확인</li>
+                <li><span class="check-box"></span>중도금 신청 알림</li>
+                <li><span class="check-box"></span>중간정산서 요청·확인</li>
+                <li><span class="check-box"></span>사진첩 취합·업체 전달</li>
+                <li><span class="check-box"></span>준공계 발송 확인</li>
+                <li><span class="check-box"></span>세금계산서 발행 확인</li>
+                <li><span class="check-box"></span>대금 수금 확인</li>
+                <li><span class="check-box"></span>최종정산서 수령</li>
+                <li><span class="check-box"></span>업체 정산 완료</li>
+                <li><span class="check-box"></span>컨설팅 세금계산서 발행</li>
+                <li><span class="check-box"></span>기술컨설팅현황 업로드 마무리</li>
+                <li><span class="check-box"></span>잔디 토픽 입금완료 공지</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notice notice-success" style="margin-top:16px;">
+        <span class="notice-icon">&#x2705;</span>
+        <div class="notice-text">
+          <strong>매뉴얼 끝</strong>
+          본 매뉴얼은 2026 컨설팅 로드맵(수정본 260227)을 기반으로 작성된 초안입니다.
+          실제 업무 프로세스 변경 시 수정이 필요합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button class="print-btn no-print" onclick="window.print()">&#x1F5A8; 인쇄하기</button>
+
+</body>
+</html>
