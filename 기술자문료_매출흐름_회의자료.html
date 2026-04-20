@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기술자문료 매출 흐름 회의자료 - 넷폼알앤디</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f5f7fa;
+  color: #1f2937;
+  padding: 2rem 1rem;
+}
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.page-header {
+  background: linear-gradient(135deg, #0d2137 0%, #1a365d 100%);
+  color: white;
+  padding: 2.5rem 2.5rem 2rem;
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom:0; left:0; right:0; height:4px;
+  background: linear-gradient(90deg, #028090, #02c39a, #f0a500);
+}
+.page-header h1 { font-size:1.6rem; font-weight:900; margin-bottom:0.5rem; }
+.page-header .sub { font-size:0.9rem; opacity:0.7; }
+.page-header .company { font-size:0.78rem; opacity:0.5; margin-top:0.3rem; }
+
+.content { padding: 2.5rem; }
+
+.section { margin-bottom: 2.5rem; }
+.section-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #0d2137;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px 6px 0 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.section-num-big {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: #f59e0b;
+  color: #0d2137;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+.section-title-big {
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding: 0.6rem 0;
+  border-bottom: 3px solid #0d2137;
+  margin-bottom: 1rem;
+}
+
+.sub-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0d2137;
+  margin: 1.2rem 0 0.6rem;
+}
+.sub-head::before {
+  content: '▶';
+  color: #028090;
+  font-size: 0.85rem;
+}
+
+.desc-line {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+}
+
+/* 불릿 */
+.bullet-list { padding-left: 1rem; }
+.bullet-list li {
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: #334155;
+  list-style: none;
+  position: relative;
+  padding-left: 1rem;
+}
+.bullet-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #028090;
+  font-weight: 700;
+}
+
+/* 테이블 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+th {
+  padding: 0.6rem 0.7rem;
+  background: #f1f5f9;
+  text-align: center;
+  border: 1px solid #cbd5e1;
+  font-weight: 700;
+  color: #334155;
+}
+td {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+td.num { text-align:center; font-weight:700; color:#f59e0b; width:50px; }
+td.center { text-align:center; }
+
+/* 흐름도 */
+.flow-step {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.flow-step .flow-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0d2137;
+  min-width: 110px;
+  flex-shrink: 0;
+}
+.flow-step .flow-detail {
+  font-size: 0.83rem;
+  color: #475569;
+  line-height: 1.5;
+}
+.flow-arrow {
+  text-align: center;
+  color: #028090;
+  font-size: 1.2rem;
+  font-weight: 900;
+  padding: 0.1rem 0;
+}
+
+/* 박스 */
+.box-principle {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+}
+.box-principle h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 0.5rem;
+}
+.box-principle .list-item {
+  font-size: 0.83rem;
+  color: #78350f;
+  line-height: 1.8;
+  position: relative;
+  padding-left: 1rem;
+}
+.box-principle .list-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.box-quote {
+  background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+  border: 1px solid #99f6e4;
+  border-left: 4px solid #028090;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: #0d2137;
+  font-style: italic;
+}
+
+.footer {
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* 인쇄 */
+.print-page { page-break-before: always; }
+@media print {
+  body { background: white; padding: 0; }
+  .page { box-shadow: none; border-radius: 0; }
+  .page-header { padding: 1.5rem 2rem; }
+  .content { padding: 1.5rem 2rem; }
+  .section { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="page-header">
+    <h1>기술자문료 매출 흐름 현황 공유</h1>
+    <div class="sub">영업 단계부터 계약 체결 · 수금 · 정산까지 전체 프로세스 정리</div>
+    <div class="company">㈜넷폼알앤디 · 2026</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== 회의 목적 및 아젠다 ===== -->
+    <div class="section">
+      <div class="section-title-big">▣ 회의 목적 및 아젠다</div>
+
+      <div class="sub-head">회의 목적</div>
+      <ul class="bullet-list">
+        <li>기술자문료 매출 흐름의 전 과정(영업 → 체결 → 수금 → 정산)을 팀 전체가 동일하게 이해</li>
+        <li>영업 단계 · 계약 체결(모두싸인) · 후속 업무 분장의 역할 명확화</li>
+        <li>업체 소통 및 정산 담당자의 업무 범위 공유</li>
+        <li>원활한 협업을 위한 소통 채널(잔디) 활용 기준 재확인</li>
+      </ul>
+
+      <div class="sub-head">아젠다</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:50px;">No.</th>
+            <th style="width:130px;">구분</th>
+            <th>내용</th>
+            <th style="width:80px;">소요시간</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="center">매출 흐름</td><td>영업 단계부터 계약 체결, 수금, 정산까지 전체 흐름 설명</td><td class="center">10분</td></tr>
+          <tr><td class="num">2</td><td class="center">계약 체결</td><td>모두싸인 전자계약 프로세스 및 잔디 공유 방식</td><td class="center">10분</td></tr>
+          <tr><td class="num">3</td><td class="center">업체 소통</td><td>계약 체결 후 업체 소통 및 후속 업무 프로세스</td><td class="center">10분</td></tr>
+          <tr><td class="num">4</td><td class="center">정산 구조</td><td>기술자문료 수수료 체계 및 정산 기준 설명</td><td class="center">10분</td></tr>
+          <tr><td class="num">5</td><td class="center">핵심 요약</td><td>팀장 보고용 핵심 포인트 공유</td><td class="center">5분</td></tr>
+          <tr><td class="num">6</td><td class="center">Q&amp;A</td><td>질의응답 및 추가 확인사항 정리</td><td class="center">5분~</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== 1. 매출 흐름 전체 ===== -->
+    <div class="section print-page">
+      <div class="section-title-big"><span class="section-num-big">1</span> 매출 흐름 — 영업부터 정산까지 전체 구조</div>
+
+      <div class="desc-line">
+        기술자문료는 <strong>영업 → 체결 → 업무진행 → 정산</strong>의 4단계 흐름으로 진행됩니다.<br>
+        각 단계별 담당자와 소통 채널이 명확하게 구분되어 있습니다.
+      </div>
+
+      <div class="sub-head">전체 흐름 요약</div>
+
+      <div class="flow-step">
+        <div class="flow-label">① 영업 단계</div>
+        <div class="flow-detail"><strong>영업이사</strong> 담당 — 현장 발굴, 제안서 작성, 발주처 협의</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">② 계약 체결</div>
+        <div class="flow-detail"><strong>모두싸인 전자계약</strong>으로 계약서 체결 진행 — 발주처 서명 완료</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">③ 잔디 공유</div>
+        <div class="flow-detail">체결 완료 후 <strong>잔디로 담당자에게 공유</strong> — 계약 정보 및 현장 정보 전달</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">④ 업체 소통</div>
+        <div class="flow-detail"><strong>담당자</strong>가 시공업체와 직접 소통 — 현장 진행 관리, 서류 지원, 행정 처리</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">⑤ 정산 진행</div>
+        <div class="flow-detail">수금 완료 → 정산 처리 — 수수료 기준에 따라 매출 확정</div>
+      </div>
+
+      <div class="box-principle" style="margin-top:1.5rem;">
+        <h4>📌 단계별 담당자 및 소통 채널</h4>
+        <div class="list-item">영업 단계 — 영업이사 / 외부 대응</div>
+        <div class="list-item">계약 체결 — 모두싸인 (전자계약 플랫폼)</div>
+        <div class="list-item">계약 공유 — 잔디 (사내 메신저)</div>
+        <div class="list-item">업체 소통 — 담당자 / 잔디 · 카카오톡 · 메일 등</div>
+        <div class="list-item">정산 처리 — 담당자 + 경영관리팀</div>
+      </div>
+    </div>
+
+    <!-- ===== 2. 계약 체결 (모두싸인) ===== -->
+    <div class="section print-page">
+      <div class="section-title-big"><span class="section-num-big">2</span> 계약 체결 — 모두싸인 전자계약 프로세스</div>
+
+      <div class="desc-line">
+        영업이사가 발주처와 협의 완료 후, <strong>모두싸인 전자계약 플랫폼</strong>을 통해 계약서를 체결합니다.
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-label">① 계약서 준비</div>
+        <div class="flow-detail">영업이사가 계약 조건 협의 후 계약서 초안 준비</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">② 모두싸인 발송</div>
+        <div class="flow-detail">모두싸인에 계약서 업로드 → 발주처로 서명 요청 발송</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">③ 서명 완료</div>
+        <div class="flow-detail">발주처 전자서명 → 당사 전자도장(코지건설㈜ 등) → 체결 완료</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">④ 문서 보관</div>
+        <div class="flow-detail">완성된 계약서 자동 저장 및 PDF 다운로드 가능</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+
+      <div class="flow-step">
+        <div class="flow-label">⑤ 잔디 공유</div>
+        <div class="flow-detail">체결 완료 즉시 <strong>잔디로 담당자에게 공유</strong> — 후속 업무 시작</div>
+      </div>
+
+      <div class="box-principle" style="margin-top:1.2rem;">
+        <h4>📌 문서 제목 형식</h4>
+        <div class="list-item">기술자문료 계약서_[현장명]_[업체명]</div>
+      </div>
+    </div>
+
+    <!-- ===== 3. 업체 소통 ===== -->
+    <div class="section print-page">
+      <div class="section-title-big"><span class="section-num-big">3</span> 업체 소통 및 후속 업무</div>
+
+      <div class="desc-line">
+        계약 체결 후 담당자는 시공업체와 직접 소통하며 현장 진행 전반을 관리합니다.
+      </div>
+
+      <div class="sub-head">담당자 업무 범위</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30%;">단계</th>
+            <th>업무 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">계약 직후</td>
+            <td>현장 정보 등록(기술자문보고방), 카톡방 개설 확인, 담당자 공유</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">착공 전</td>
+            <td>착공계·공정표 수령 확인, 초기 행정 서류 준비</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">공사 중</td>
+            <td>시공업체 일일 소통, 기성 청구 지원, 하자 발생 시 진단서 작성</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">준공 시</td>
+            <td>준공계 제출 지원, 준공 사진첩 수취, 잔금 청구 준비</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">준공 후</td>
+            <td>하자보증 대응, 최종 정산 진행, 세금계산서 발행 요청</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head">소통 채널</div>
+      <ul class="bullet-list">
+        <li><strong>잔디</strong> — 사내 공유 및 영업이사·경영관리팀과의 보고</li>
+        <li><strong>카카오톡</strong> — 시공업체 현장 담당자와의 실시간 소통</li>
+        <li><strong>메일/유선</strong> — 공식 문서 송수신 및 중요 협의사항</li>
+      </ul>
+    </div>
+
+    <!-- ===== 4. 정산 구조 ===== -->
+    <div class="section print-page">
+      <div class="section-title-big"><span class="section-num-big">4</span> 기술자문료 정산 구조</div>
+
+      <div class="desc-line">
+        기술자문료는 <strong>낙찰금액을 기준으로 수수료가 산정</strong>되며, 계약 유형에 따라 수수료율이 달라집니다.
+      </div>
+
+      <div class="sub-head">계약 유형별 수수료 체계</div>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>계약 유형</th>
+            <th>수수료</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center" style="font-weight:700; color:#f59e0b;">①</td>
+            <td class="center">POUR 컨설팅 (옥상공사시공건)</td>
+            <td class="center" style="font-weight:700;">별도 협의</td>
+            <td>POUR 공법 전용 현장</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; color:#028090;">②</td>
+            <td class="center">기술자문</td>
+            <td class="center" style="font-weight:700; color:#028090;">낙찰금액의 5%</td>
+            <td>전 과정 서비스 제공</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; color:#64748b;">③</td>
+            <td class="center">직영 (서비스 이용)</td>
+            <td class="center" style="font-weight:700; color:#dc2626;">낙찰금액의 2%</td>
+            <td>영업·계약 단계만 이용</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; color:#94a3b8;">④</td>
+            <td class="center">직영 (서비스 미이용)</td>
+            <td class="center" style="font-weight:700; color:#94a3b8;">—</td>
+            <td>서비스 미제공</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head">수금 및 정산 흐름</div>
+
+      <div class="flow-step">
+        <div class="flow-label">① 계약 체결</div>
+        <div class="flow-detail">낙찰금액 확정 → 수수료 산정</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-step">
+        <div class="flow-label">② 세금계산서 발행</div>
+        <div class="flow-detail">계약 조건에 따라 선급금 · 중도금 · 잔금 기준 발행</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-step">
+        <div class="flow-label">③ 수금 확인</div>
+        <div class="flow-detail">발주처 결재일 기준 입금 확인 → 기술자문보고방 업데이트</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-step">
+        <div class="flow-label">④ 잔금 수금</div>
+        <div class="flow-detail">준공 후 최종 잔금 입금 → 매출 확정</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-step">
+        <div class="flow-label">⑤ 정산 완료</div>
+        <div class="flow-detail">경영관리팀 정산 처리 → 영업 인센티브 정산 개시</div>
+      </div>
+
+      <div class="box-principle" style="margin-top:1.2rem;">
+        <h4>📌 공통 원칙</h4>
+        <div class="list-item">매출 인식 기준 : 세금계산서 발행일</div>
+        <div class="list-item">수금 기준 : 발주처 결재일</div>
+        <div class="list-item">세금계산서 발행 후 수금까지 완료되어야 매출 확정</div>
+        <div class="list-item">수금 범위 내에서만 자금 집행 (초과 집행 금지)</div>
+      </div>
+    </div>
+
+    <!-- ===== 5. 핵심 요약 ===== -->
+    <div class="section print-page">
+      <div class="section-title-big"><span class="section-num-big">5</span> 핵심 구조 요약 (팀장 보고용)</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:60px;">No.</th>
+            <th style="width:140px;">키워드</th>
+            <th>핵심 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">01</td><td class="center" style="font-weight:700;">영업</td><td>영업이사가 현장 발굴 · 제안서 · 발주처 협의까지 담당</td></tr>
+          <tr><td class="num">02</td><td class="center" style="font-weight:700;">체결</td><td>모두싸인 전자계약 플랫폼으로 체결 → 잔디로 담당자 공유</td></tr>
+          <tr><td class="num">03</td><td class="center" style="font-weight:700;">업무진행</td><td>담당자가 업체와 직접 소통하며 현장 진행 · 서류 · 행정 지원</td></tr>
+          <tr><td class="num">04</td><td class="center" style="font-weight:700;">수수료</td><td>기술자문 5% / 직영(이용) 2% / POUR 컨설팅 별도 협의</td></tr>
+          <tr><td class="num">05</td><td class="center" style="font-weight:700;">정산</td><td>수금 완료 후 정산 처리 → 경영관리팀 세금계산서 발행 관리</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head">최종 한 줄 보고 멘트</div>
+      <div class="box-quote">
+        "기술자문료는 영업이사의 수주 → 모두싸인 전자계약 체결 → 잔디 공유 → 담당자의 업체 소통 및 현장 관리 → 수금 완료 후 정산의 흐름으로 운영되며,
+        계약 유형에 따라 기술자문 5%, 직영 서비스 이용 2%, POUR 컨설팅은 별도 협의로 수수료가 산정됩니다."
+      </div>
+    </div>
+
+    <!-- ===== 6. Q&A ===== -->
+    <div class="section">
+      <div class="section-title-big"><span class="section-num-big">6</span> Q&amp;A 및 확인사항 메모</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:50px;">No.</th>
+            <th style="width:45%;">질문 / 확인사항</th>
+            <th>담당자 답변 / 조치</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">1</td><td></td><td></td></tr>
+          <tr><td class="num">2</td><td></td><td></td></tr>
+          <tr><td class="num">3</td><td></td><td></td></tr>
+          <tr><td class="num">4</td><td></td><td></td></tr>
+          <tr><td class="num">5</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.5rem;">
+        ※ 회의 중 추가 확인사항은 위 표에 직접 기재하여 후속 조치 추적에 활용하세요.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    © 2026 ㈜넷폼알앤디. 내부 회의자료.
+  </div>
+
+</div>
+
+</body>
+</html>
