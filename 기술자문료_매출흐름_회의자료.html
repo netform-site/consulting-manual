@@ -419,10 +419,55 @@ td.center { text-align:center; }
       <div class="section-title-big"><span class="section-num-big">4</span> 기술자문료 정산 구조</div>
 
       <div class="desc-line">
-        기술자문료는 <strong>낙찰금액을 기준으로 수수료가 산정</strong>되며, 계약 유형에 따라 수수료율이 달라집니다.
+        기술자문료는 <strong>영업 주체(내부/외부)에 따라 정산 기준이 다르게 적용</strong>됩니다.<br>
+        외부 영업팀의 경우 계약 유형별 수수료 체계가 적용됩니다.
       </div>
 
-      <div class="sub-head">계약 유형별 수수료 체계</div>
+      <div class="sub-head">내부 / 외부 영업 정산 구조 비교</div>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>내부 영업사원</th>
+            <th>외부 영업팀</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">정산 기준</td>
+            <td class="center">이익 기준</td>
+            <td class="center">매출 기준 <span style="color:#dc2626; font-size:0.75rem; font-weight:700;">(논의중)</span></td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">계산 방식</td>
+            <td class="center" style="font-size:0.82rem;">매출 − 매입 − 수수료(면허)</td>
+            <td class="center" style="font-size:0.82rem;">매출 × 5% <span style="color:#dc2626; font-size:0.72rem;">(논의중)</span></td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">지급 항목</td>
+            <td class="center">이익금 기반 지급</td>
+            <td class="center">매출 기반 지급</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; background:#f8fafc;">정산 시점</td>
+            <td class="center">현장 정산 완료 후</td>
+            <td class="center">수금 완료 후</td>
+          </tr>
+          <tr style="background:#fef2f2;">
+            <td class="center" style="font-weight:700; background:#fef2f2;">상태</td>
+            <td class="center" style="color:#166534; font-weight:700;">확정</td>
+            <td class="center" style="color:#dc2626; font-weight:700;">⚠️ 보류 (진행중)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box-principle" style="background:#fef2f2; border-color:#fca5a5; border-left-color:#dc2626; margin-top:1rem;">
+        <h4 style="color:#991b1b;">⚠️ 외부 영업팀 수수료 — 보류</h4>
+        <div class="list-item" style="color:#991b1b;">외부 영업팀에 대한 수수료 기준(매출 5%)은 현재 논의 진행 중</div>
+        <div class="list-item" style="color:#991b1b;">확정 시 별도 공지 예정</div>
+      </div>
+
+      <div class="sub-head" style="margin-top:1.5rem;">외부 영업팀 — 계약 유형별 수수료 체계 <span style="font-size:0.72rem; color:#dc2626; font-weight:500;">(보류 / 논의중)</span></div>
       <table>
         <thead>
           <tr>
@@ -442,13 +487,13 @@ td.center { text-align:center; }
           <tr>
             <td class="center" style="font-weight:700; color:#028090;">②</td>
             <td class="center">기술자문</td>
-            <td class="center" style="font-weight:700; color:#028090;">낙찰금액의 5%</td>
+            <td class="center" style="font-weight:700; color:#028090;">낙찰금액의 5% <span style="color:#dc2626; font-size:0.72rem;">(보류)</span></td>
             <td>전 과정 서비스 제공</td>
           </tr>
           <tr>
             <td class="center" style="font-weight:700; color:#64748b;">③</td>
             <td class="center">직영 (서비스 이용)</td>
-            <td class="center" style="font-weight:700; color:#dc2626;">낙찰금액의 2%</td>
+            <td class="center" style="font-weight:700; color:#dc2626;">낙찰금액의 2% <span style="color:#dc2626; font-size:0.72rem;">(보류)</span></td>
             <td>영업·계약 단계만 이용</td>
           </tr>
           <tr>
@@ -460,35 +505,36 @@ td.center { text-align:center; }
         </tbody>
       </table>
 
-      <div class="sub-head">수금 및 정산 흐름</div>
+      <div class="sub-head" style="margin-top:1.5rem;">수금 및 정산 흐름</div>
 
       <div class="flow-step">
         <div class="flow-label">① 계약 체결</div>
-        <div class="flow-detail">낙찰금액 확정 → 수수료 산정</div>
+        <div class="flow-detail">낙찰금액 확정 → 기술자문료 산정</div>
       </div>
       <div class="flow-arrow">▼</div>
       <div class="flow-step">
-        <div class="flow-label">② 세금계산서 발행</div>
-        <div class="flow-detail">계약 조건에 따라 선급금 · 중도금 · 잔금 기준 발행</div>
+        <div class="flow-label">② 잔금 청구</div>
+        <div class="flow-detail"><strong>준공 후 잔금 단일 청구</strong> (선급금·중도금 없음)</div>
       </div>
       <div class="flow-arrow">▼</div>
       <div class="flow-step">
-        <div class="flow-label">③ 수금 확인</div>
-        <div class="flow-detail">발주처 결재일 기준 입금 확인 → 기술자문보고방 업데이트</div>
+        <div class="flow-label">③ 세금계산서 발행</div>
+        <div class="flow-detail"><strong>잔금 기준 세금계산서 발행</strong> → 발주처 결재</div>
       </div>
       <div class="flow-arrow">▼</div>
       <div class="flow-step">
-        <div class="flow-label">④ 잔금 수금</div>
-        <div class="flow-detail">준공 후 최종 잔금 입금 → 매출 확정</div>
+        <div class="flow-label">④ 수금 완료</div>
+        <div class="flow-detail">발주처 결재일 기준 입금 확인 → 매출 확정</div>
       </div>
       <div class="flow-arrow">▼</div>
       <div class="flow-step">
         <div class="flow-label">⑤ 정산 완료</div>
-        <div class="flow-detail">경영관리팀 정산 처리 → 영업 인센티브 정산 개시</div>
+        <div class="flow-detail">경영관리팀 정산 처리 → 내부/외부 영업 정산 개시</div>
       </div>
 
       <div class="box-principle" style="margin-top:1.2rem;">
         <h4>📌 공통 원칙</h4>
+        <div class="list-item">청구 방식 : <strong>잔금 단일 청구</strong> (선급금·중도금 없음)</div>
         <div class="list-item">매출 인식 기준 : 세금계산서 발행일</div>
         <div class="list-item">수금 기준 : 발주처 결재일</div>
         <div class="list-item">세금계산서 발행 후 수금까지 완료되어야 매출 확정</div>
@@ -512,15 +558,16 @@ td.center { text-align:center; }
           <tr><td class="num">01</td><td class="center" style="font-weight:700;">영업</td><td>영업이사가 현장 발굴 · 제안서 · 발주처 협의까지 담당</td></tr>
           <tr><td class="num">02</td><td class="center" style="font-weight:700;">체결</td><td>모두싸인 전자계약 플랫폼으로 체결 → 잔디로 담당자 공유</td></tr>
           <tr><td class="num">03</td><td class="center" style="font-weight:700;">업무진행</td><td>담당자가 업체와 직접 소통하며 현장 진행 · 서류 · 행정 지원</td></tr>
-          <tr><td class="num">04</td><td class="center" style="font-weight:700;">수수료</td><td>기술자문 5% / 직영(이용) 2% / POUR 컨설팅 별도 협의</td></tr>
-          <tr><td class="num">05</td><td class="center" style="font-weight:700;">정산</td><td>수금 완료 후 정산 처리 → 경영관리팀 세금계산서 발행 관리</td></tr>
+          <tr><td class="num">04</td><td class="center" style="font-weight:700;">청구</td><td>잔금 단일 청구 (선급금·중도금 없음) → 세금계산서 발행</td></tr>
+          <tr><td class="num">05</td><td class="center" style="font-weight:700;">내부정산</td><td>내부 영업사원 : 매출 − 매입 − 수수료(면허)</td></tr>
+          <tr><td class="num">06</td><td class="center" style="font-weight:700;">외부정산</td><td>외부 영업팀 : 매출 × 5% <span style="color:#dc2626; font-size:0.72rem; font-weight:700;">(보류 / 논의중)</span></td></tr>
         </tbody>
       </table>
 
       <div class="sub-head">최종 한 줄 보고 멘트</div>
       <div class="box-quote">
-        "기술자문료는 영업이사의 수주 → 모두싸인 전자계약 체결 → 잔디 공유 → 담당자의 업체 소통 및 현장 관리 → 수금 완료 후 정산의 흐름으로 운영되며,
-        계약 유형에 따라 기술자문 5%, 직영 서비스 이용 2%, POUR 컨설팅은 별도 협의로 수수료가 산정됩니다."
+        "기술자문료는 영업이사의 수주 → 모두싸인 전자계약 체결 → 잔디 공유 → 담당자의 업체 소통 및 현장 관리 → 준공 후 잔금 단일 청구 → 수금 완료 후 정산의 흐름으로 운영되며,
+        내부 영업사원은 <strong>매출 − 매입 − 수수료(면허)</strong> 기준으로 정산되고, 외부 영업팀 수수료(매출 5%)는 <strong style="color:#dc2626;">현재 논의 진행 중(보류)</strong>입니다."
       </div>
     </div>
 
